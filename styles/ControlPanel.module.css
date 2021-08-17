@@ -1,0 +1,15 @@
+.accordion {
+	width: 200px;
+}
+
+.accordion_summary {
+	height: 350px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.back_small_CP {
+	position: absolute;
+	top: 80px;
+}
