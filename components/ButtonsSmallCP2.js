@@ -13,35 +13,22 @@ export default function ButtonsVertical2({ state, setState }) {
 		// setExpanded(false)
 	}, [])
 
-	function handleClick() {
+	function handleClick(value) {
 		const newButtons = [...buttons]
-		newButtons.pop()
+		newButtons[1] = value
 		setButtons(newButtons)
 	}
 
 	return (
-		<Grid
-			container
-			direction="column"
-			// justifyContent="center"
-			alignItems="center">
-			<Grid item className={styles.back_small_CP}>
-				<Button
-					variant="outlined"
-					size="small"
-					color="primary"
-					onClick={handleClick}>
-					Back
-				</Button>
-			</Grid>
+		<Grid container direction="column" alignItems="center">
 			<Grid item>
 				{buttons[0] === 'FRAMES' && (
 					<ButtonGroup
 						orientation="vertical"
 						color="primary"
 						aria-label="vertical outlined primary button group">
-						<Button>RANGE</Button>
-						<Button>SPECIFIC</Button>
+						<Button onClick={() => handleClick('RANGE')}>RANGE</Button>
+						<Button onClick={() => handleClick('SPECIFIC')}>SPECIFIC</Button>
 					</ButtonGroup>
 				)}
 
@@ -50,8 +37,10 @@ export default function ButtonsVertical2({ state, setState }) {
 						orientation="vertical"
 						color="primary"
 						aria-label="vertical outlined primary button group">
-						<Button>SPECIFIC</Button>
-						<Button>START & FINISH</Button>
+						<Button onClick={() => handleClick('SPECIFIC')}>SPECIFIC</Button>
+						<Button onClick={() => handleClick('START & FINISH')}>
+							START & FINISH
+						</Button>
 					</ButtonGroup>
 				)}
 
@@ -60,8 +49,8 @@ export default function ButtonsVertical2({ state, setState }) {
 						orientation="vertical"
 						color="primary"
 						aria-label="vertical outlined primary button group">
-						<Button>NORMAL</Button>
-						<Button>COUNTER</Button>
+						<Button onClick={() => handleClick('NORMAL')}>NORMAL</Button>
+						<Button onClick={() => handleClick('COUNTER')}>COUNTER</Button>
 					</ButtonGroup>
 				)}
 
@@ -70,8 +59,8 @@ export default function ButtonsVertical2({ state, setState }) {
 						orientation="vertical"
 						color="primary"
 						aria-label="vertical outlined primary button group">
-						<Button>NORMAL</Button>
-						<Button>LAUNCH</Button>
+						<Button onClick={() => handleClick('NORMAL')}>NORMAL</Button>
+						<Button onClick={() => handleClick('LAUNCH')}>LAUNCH</Button>
 					</ButtonGroup>
 				)}
 
@@ -80,8 +69,10 @@ export default function ButtonsVertical2({ state, setState }) {
 						orientation="vertical"
 						color="primary"
 						aria-label="vertical outlined primary button group">
-						<Button>RAGE ART</Button>
-						<Button>RAGE DRIVE</Button>
+						<Button onClick={() => handleClick('RAGE ART')}>RAGE ART</Button>
+						<Button onClick={() => handleClick('RAGE DRIVE')}>
+							RAGE DRIVE
+						</Button>
 					</ButtonGroup>
 				)}
 
@@ -90,8 +81,8 @@ export default function ButtonsVertical2({ state, setState }) {
 						orientation="vertical"
 						color="primary"
 						aria-label="vertical outlined primary button group">
-						<Button>SAFE</Button>
-						<Button>UNSAFE</Button>
+						<Button onClick={() => handleClick('SAFE')}>SAFE</Button>
+						<Button onClick={() => handleClick('UNSAFE')}>UNSAFE</Button>
 					</ButtonGroup>
 				)}
 
@@ -100,10 +91,14 @@ export default function ButtonsVertical2({ state, setState }) {
 						orientation="vertical"
 						color="primary"
 						aria-label="vertical outlined primary button group">
-						<Button>+ON BLOCK</Button>
-						<Button>POWER CRUSH</Button>
-						<Button>WALL BOUNCE</Button>
-						<Button>HOMING</Button>
+						<Button onClick={() => handleClick('+ON BLOCK')}>+ON BLOCK</Button>
+						<Button onClick={() => handleClick('POWER CRUSH')}>
+							POWER CRUSH
+						</Button>
+						<Button onClick={() => handleClick('WALL BOUNCE')}>
+							WALL BOUNCE
+						</Button>
+						<Button onClick={() => handleClick('HOMING')}>HOMING</Button>
 					</ButtonGroup>
 				)}
 
@@ -112,9 +107,9 @@ export default function ButtonsVertical2({ state, setState }) {
 						orientation="vertical"
 						color="primary"
 						aria-label="vertical outlined primary button group">
-						<Button>SINGLE</Button>
-						<Button>DOUBLE</Button>
-						<Button>TRIPPLE</Button>
+						<Button onClick={() => handleClick('SINGLE')}>SINGLE</Button>
+						<Button onClick={() => handleClick('DOUBLE')}>DOUBLE</Button>
+						<Button onClick={() => handleClick('TRIPPLE')}>TRIPPLE</Button>
 					</ButtonGroup>
 				)}
 			</Grid>

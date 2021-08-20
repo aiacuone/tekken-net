@@ -3,8 +3,9 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Hidden from '@material-ui/core/Hidden'
-import ButtonsHorizontal2 from './ButtonsHorizontal2'
+import ButtonsLarge2 from './ButtonsLarge2'
 import styles from '../styles/ControlPanel.module.css'
+import InputLargeCP from './InputLargeCP'
 
 export default function CPLarge({ setState, state }) {
 	const { buttons } = state
@@ -13,8 +14,7 @@ export default function CPLarge({ setState, state }) {
 		setButtons([value])
 	}
 	return (
-		<Grid item>
-			{/* <Hidden smDown> */}
+		<Grid container justifyContent="center">
 			<Grid item>
 				<ButtonGroup
 					color="primary"
@@ -31,8 +31,10 @@ export default function CPLarge({ setState, state }) {
 					<Button onClick={() => handleClick('STRINGS')}>STRINGS</Button>
 				</ButtonGroup>
 			</Grid>
-			<ButtonsHorizontal2 state={state} setState={setState} />
-			{/* </Hidden> */}
+			<ButtonsLarge2 state={state} setState={setState} />
+			{buttons.length === 2 && (
+				<InputLargeCP state={state} setState={setState} />
+			)}
 		</Grid>
 	)
 }

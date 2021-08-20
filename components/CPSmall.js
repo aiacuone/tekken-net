@@ -11,6 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import styles from '../styles/ControlPanel.module.css'
 import ButtonsSmallCP from './ButtonsSmallCP'
 
+
 export default function CPSmall({ state, setState }) {
 	const { buttons, expanded } = state
 	const { setExpanded, setButtons } = setState
