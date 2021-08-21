@@ -5,25 +5,29 @@ import FramesSpecificInput from './FramesSpecificInput'
 import HeightSpecificInput from './HeightSpecificInput'
 import HeightStartNFinishInput from './HeightStartNFinishInput'
 
-export default function InputSmallCP({ state, setState }) {
+export default function Inputs({ state, setState, vars }) {
 	const { buttons } = state
 	const { setButtons } = setState
-
+	const { inputSpacing } = vars
 	const firstButton = buttons[0]
 	const secondButton = buttons[1]
 	return (
 		<Grid item>
 			{firstButton === 'FRAMES' && secondButton === 'RANGE' && (
-				<FramesRangeInput state={state} setState={setState} />
+				<FramesRangeInput state={state} setState={setState} vars={vars} />
 			)}
 			{firstButton === 'FRAMES' && secondButton === 'SPECIFIC' && (
-				<FramesSpecificInput state={state} setState={setState} />
+				<FramesSpecificInput state={state} setState={setState} vars={vars} />
 			)}
 			{firstButton === 'HEIGHT' && secondButton === 'SPECIFIC' && (
-				<HeightSpecificInput state={state} setState={setState} />
+				<HeightSpecificInput state={state} setState={setState} vars={vars} />
 			)}
 			{firstButton === 'HEIGHT' && secondButton === 'START & FINISH' && (
-				<HeightStartNFinishInput state={state} setState={setState} />
+				<HeightStartNFinishInput
+					state={state}
+					setState={setState}
+					vars={vars}
+				/>
 			)}
 		</Grid>
 	)

@@ -1,109 +1,83 @@
 import React, { useState } from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 
-const useStyles = makeStyles({
-	root: {
-		'&:hover': {
-			backgroundColor: 'transparent',
-		},
-	},
-	icon: {
-		borderRadius: '50%',
-		width: 16,
-		height: 16,
-		boxShadow:
-			'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
-		backgroundColor: '#f5f8fa',
-		backgroundImage:
-			'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
-		'$root.Mui-focusVisible &': {
-			outline: '2px auto rgba(19,124,189,.6)',
-			outlineOffset: 2,
-		},
-		'input:hover ~ &': {
-			backgroundColor: '#ebf1f5',
-		},
-		'input:disabled ~ &': {
-			boxShadow: 'none',
-			background: 'rgba(206,217,224,.5)',
-		},
-	},
-	checkedIcon: {
-		backgroundColor: '#137cbd',
-		backgroundImage:
-			'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
-		'&:before': {
-			display: 'block',
-			width: 16,
-			height: 16,
-			backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
-			content: '""',
-		},
-		'input:hover ~ &': {
-			backgroundColor: '#106ba3',
-		},
-	},
-})
+export default function HeightStartNFinishInput({ state, setState, vars }) {
+	const { buttons } = state
+	const { setButtons } = setState
+	const { lgCPButtHeadSpacing, smCPButtHeadSpacing, isSmallScreen } = vars
 
-function StyledRadio(props) {
-	const classes = useStyles()
-
-	return (
-		<Radio
-			className={classes.root}
-			disableRipple
-			color="default"
-			checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
-			icon={<span className={classes.icon} />}
-			{...props}
-		/>
-	)
-}
-
-export default function HeightStartNFinishInput() {
-	const [radioGroup1, setRadioGroup1] = useState()
-	const [radioGroup2, setRadioGroup2] = useState()
-
-	const handleChange1 = (event) => {
-		setRadioGroup1(event.target.value)
-	}
-
-	const handleChange2 = (event) => {
-		setRadioGroup2(event.target.value)
+	function handleClick(value) {
+		const newButtons = [...buttons]
+		newButtons[2] = value
+		setButtons(newButtons)
 	}
 
 	return (
-		<>
-			<FormControl component="fieldset">
-				<FormLabel component="legend">Start</FormLabel>
-				<RadioGroup
-					defaultValue="H"
-					aria-label="gender"
-					name="customized-radios"
-					onChange={handleChange1}>
-					<FormControlLabel value="H" control={<StyledRadio />} label="H" />
-					<FormControlLabel value="M" control={<StyledRadio />} label="M" />
-					<FormControlLabel value="L" control={<StyledRadio />} label="L" />
-				</RadioGroup>
-			</FormControl>
-			<FormControl component="fieldset">
-				<FormLabel component="legend">Finish</FormLabel>
-				<RadioGroup
-					onChange={handleChange2}
-					defaultValue="H"
-					aria-label="gender"
-					name="customized-radios">
-					<FormControlLabel value="H" control={<StyledRadio />} label="H" />
-					<FormControlLabel value="M" control={<StyledRadio />} label="M" />
-					<FormControlLabel value="L" control={<StyledRadio />} label="L" />
-				</RadioGroup>
-			</FormControl>
-		</>
+		<Grid
+			container
+			direction="column"
+			alignItems="center"
+			// spacing={isSmallScreen ? smCPButtHeadSpacing : lgCPButtHeadSpacing}
+		>
+			{isSmallScreen && (
+				<Grid item>
+					<Typography noWrap> Height / Start & Finish</Typography>
+				</Grid>
+			)}
+
+			<Grid item>
+				<Grid container spacing={3}>
+					<Grid item>
+						<Grid container direction="column" alignItems="center" spacing={1}>
+							<Grid item>
+								<Typography>Start</Typography>
+							</Grid>
+							<Grid item>
+								<ButtonGroup
+									orientation={isSmallScreen ? 'vertical' : 'horizontal'}
+									color="primary"
+									aria-label="outlined secondary button group">
+									<Button value="H" onClick={() => handleClick('H')}>
+										H
+									</Button>
+									<Button value="M" onClick={() => handleClick('M')}>
+										M
+									</Button>
+									<Button value="L" onClick={() => handleClick('L')}>
+										L
+									</Button>
+								</ButtonGroup>
+							</Grid>
+						</Grid>
+					</Grid>
+					<Grid item>
+						<Grid container direction="column" alignItems="center" spacing={1}>
+							<Grid item>
+								<Typography>Finish</Typography>
+							</Grid>
+							<Grid item>
+								<ButtonGroup
+									orientation={isSmallScreen ? 'vertical' : 'horizontal'}
+									color="primary"
+									aria-label="outlined secondary button group">
+									<Button value="H" onClick={() => handleClick('H')}>
+										H
+									</Button>
+									<Button value="M" onClick={() => handleClick('M')}>
+										M
+									</Button>
+									<Button value="L" onClick={() => handleClick('L')}>
+										L
+									</Button>
+								</ButtonGroup>
+							</Grid>
+						</Grid>
+					</Grid>
+				</Grid>
+			</Grid>
+		</Grid>
 	)
 }

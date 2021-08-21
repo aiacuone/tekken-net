@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
-import Grid from '@material-ui/core/Grid'
 import Slider from '@material-ui/core/Slider'
 import { makeStyles } from '@material-ui/core/styles'
-import Hidden from '@material-ui/core/Hidden'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles({
 	sliderSmall: {
-		height: 200,
+		height: 150,
 	},
 	sliderLarge: {
 		width: 200,
 	},
 })
 
-export default function FramesRangeInput() {
+export default function FramesRangeInput({ vars }) {
 	const [value1, setValue1] = useState(10)
 	const [value2, setValue2] = useState(25)
+	const { lgCPButtHeadSpacing, smCPButtHeadSpacing, isSmallScreen } = vars
 
 	function valuetext(value, index) {
 		index === 0 ? setValue1(value) : setValue2(value)
@@ -35,30 +36,29 @@ export default function FramesRangeInput() {
 		},
 	]
 	return (
-		<>
-			<Hidden mdUp>
-				<div className={classes.sliderSmall}>
+		<Grid
+			container
+			direction="column"
+			alignItems="center"
+			spacing={isSmallScreen ? smCPButtHeadSpacing : lgCPButtHeadSpacing}>
+			{isSmallScreen && (
+				<Grid item>
+					<Typography>Frames/Range</Typography>
+				</Grid>
+			)}
+			<Grid item>
+				<div
+					className={isSmallScreen ? classes.sliderSmall : classes.sliderLarge}>
 					<Slider
 						max={30}
-						orientation="vertical"
+						orientation={isSmallScreen ? 'vertical' : 'horizontal'}
 						defaultValue={[10, 25]}
-						aria-labelledby="vertical-slider"
-						getAriaValueText={valuetext}
-						marks={marks}
-					/>
-				</div>
-			</Hidden>
-			<Hidden smDown>
-				<div className={classes.sliderLarge}>
-					<Slider
-						max={30}
 						aria-labelledby="track-inverted-range-slider"
 						getAriaValueText={valuetext}
-						defaultValue={[10, 25]}
 						marks={marks}
 					/>
 				</div>
-			</Hidden>
-		</>
+			</Grid>
+		</Grid>
 	)
 }
