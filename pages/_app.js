@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }) {
 	const state = { buttons, expanded }
 	const setState = { setButtons, setExpanded }
 	const vars = {
+		smCPSpacing: 3,
 		lgCPButtHeadSpacing: 1,
 		smCPButtHeadSpacing: 3,
 		CPSpacing: 2,

@@ -17,11 +17,6 @@ export default function FramesSpecificInput({ vars }) {
 			alignItems="center"
 			direction="column"
 			spacing={isSmallScreen ? smCPButtHeadSpacing : lgCPButtHeadSpacing}>
-			{isSmallScreen && (
-				<Grid item>
-					<Typography>Frames/Specific</Typography>
-				</Grid>
-			)}
 			<Grid item>
 				<ButtonGroup
 					orientation={isSmallScreen ? 'vertical' : 'horizontal'}

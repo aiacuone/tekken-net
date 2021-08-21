@@ -12,7 +12,7 @@ export default function Inputs({ state, setState, vars }) {
 	const firstButton = buttons[0]
 	const secondButton = buttons[1]
 	return (
-		<Grid item>
+		<>
 			{firstButton === 'FRAMES' && secondButton === 'RANGE' && (
 				<FramesRangeInput state={state} setState={setState} vars={vars} />
 			)}
@@ -29,6 +29,6 @@ export default function Inputs({ state, setState, vars }) {
 					vars={vars}
 				/>
 			)}
-		</Grid>
+		</>
 	)
 }

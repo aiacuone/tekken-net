@@ -18,16 +18,7 @@ export default function HeightSpecificInput({ state, setState, vars }) {
 
 	return (
 		<>
-			<Grid
-				container
-				direction="column"
-				alignItems="center"
-				spacing={isSmallScreen ? smCPButtHeadSpacing : lgCPButtHeadSpacing}>
-				{isSmallScreen && (
-					<Grid item>
-						<Typography>Height/Specific</Typography>
-					</Grid>
-				)}
+			<Grid container direction="column" alignItems="center">
 				<Grid item>
 					<ButtonGroup
 						orientation={isSmallScreen ? 'vertical' : 'horizontal'}

@@ -8,12 +8,20 @@ import styles from '../styles/ControlPanel.module.css'
 import Buttons from './Buttons'
 import Inputs from './Inputs'
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 export default function ControlPanel({ state, setState, vars }) {
 	const { buttons, expanded } = state
 	const { setExpanded, setButtons } = setState
-	const { isSmallScreen, CPSpacing } = vars
+	const {
+		isSmallScreen,
+		CPSpacing,
+		smCPButtHeadSpacing,
+		wording,
+		smCPSpacing,
+	} = vars
 	const handleChange = (panel) => (event, isExpanded) => {
+		setButtons([])
 		setExpanded(isExpanded ? panel : false)
 	}
 	useEffect(() => {
@@ -25,6 +33,11 @@ export default function ControlPanel({ state, setState, vars }) {
 		newButtons.pop()
 		setButtons(newButtons)
 	}
+
+	function handleSubmit() {
+		return
+	}
+
 	return (
 		<Grid container>
 			{isSmallScreen ? (
@@ -41,31 +54,85 @@ export default function ControlPanel({ state, setState, vars }) {
 								alignItems: 'center',
 							}}>
 							<AccordionSummary
-								style={{
-									display: 'flex',
-									justifyContent: 'center',
-								}}
 								expandIcon={<MenuIcon fontSize="medium" />}
 								aria-controls="panel1a-content"
 								id="panel1a-header"></AccordionSummary>
-							<AccordionDetails className={styles.accordion_summary}>
-								{buttons.length > 0 && (
-									<Grid item className={styles.back_small_CP}>
-										<Button
-											variant="outlined"
-											size="small"
-											color="primary"
-											onClick={handleBack}>
-											Back
-										</Button>
-									</Grid>
-								)}
-								{expanded && (
-									<Buttons state={state} setState={setState} vars={vars} />
-								)}
-								{buttons.length === 2 && (
-									<Inputs state={state} setState={setState} vars={vars} />
-								)}
+							<AccordionDetails>
+								<Grid
+									className={styles.small_cp_container}
+									container
+									direction="column"
+									alignItems="center"
+									justifyContent="center"
+									spacing={smCPSpacing}>
+									{buttons.length > 0 && (
+										<Grid item>
+											<Button
+												variant="outlined"
+												size="small"
+												color="primary"
+												onClick={handleBack}>
+												Back
+											</Button>
+										</Grid>
+									)}
+
+									{buttons.length < 2 ? (
+										<Grid item>
+											<Grid
+												container
+												direction="column"
+												alignItems="center"
+												style={{ position: 'relative' }}>
+												{buttons.length === 1 && (
+													<Grid item className={styles.smallCPHeader}>
+														<Typography>{wording[buttons[0]]}</Typography>
+													</Grid>
+												)}
+
+												<Grid item>
+													<Buttons
+														state={state}
+														setState={setState}
+														vars={vars}
+													/>
+												</Grid>
+											</Grid>
+										</Grid>
+									) : (
+										<Grid item style={{ position: 'relative' }}>
+											<Grid
+												container
+												direction="column"
+												justifyContent="center"
+												alignItems="center">
+												<Grid item className={styles.input_header}>
+													<Typography noWrap>{`${wording[buttons[0]]} / ${
+														wording[buttons[1]]
+													}`}</Typography>
+												</Grid>
+												<Grid item>
+													<Inputs
+														state={state}
+														setState={setState}
+														vars={vars}
+													/>
+												</Grid>
+											</Grid>
+										</Grid>
+									)}
+									{buttons.length > 0 && (
+										<Grid item className={styles.back_small_CP}>
+											<Button
+												variant="outlined"
+												size="small"
+												color="primary"
+												onClick={handleSubmit}>
+												Submit
+											</Button>
+										</Grid>
+									)}
+								</Grid>
 							</AccordionDetails>
 						</Accordion>
 					</Grid>
@@ -80,7 +147,9 @@ export default function ControlPanel({ state, setState, vars }) {
 						<Buttons state={state} setState={setState} vars={vars} />
 					</Grid>
 					{buttons.length === 2 && (
-						<Inputs state={state} setState={setState} vars={vars} />
+						<Grid item>
+							<Inputs state={state} setState={setState} vars={vars} />
+						</Grid>
 					)}
 				</Grid>
 			)}

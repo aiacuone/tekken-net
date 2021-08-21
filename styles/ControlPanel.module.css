@@ -2,14 +2,18 @@
 	width: 200px;
 }
 
-.accordion_summary {
+.small_cp_container {
 	height: 350px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	/* background: green; */
+	/* width: 100%; */
 }
 
-.back_small_CP {
+.smallCPHeader {
 	position: absolute;
-	top: 80px;
+	top: -110px;
+}
+
+.input_header {
+	position: absolute;
+	top: -90px;
 }

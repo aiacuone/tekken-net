@@ -16,18 +16,7 @@ export default function HeightStartNFinishInput({ state, setState, vars }) {
 	}
 
 	return (
-		<Grid
-			container
-			direction="column"
-			alignItems="center"
-			// spacing={isSmallScreen ? smCPButtHeadSpacing : lgCPButtHeadSpacing}
-		>
-			{isSmallScreen && (
-				<Grid item>
-					<Typography noWrap> Height / Start & Finish</Typography>
-				</Grid>
-			)}
-
+		<Grid container direction="column" alignItems="center">
 			<Grid item>
 				<Grid container spacing={3}>
 					<Grid item>

@@ -64,11 +64,6 @@ export default function Buttons({ state, setState, vars }) {
 					direction="column"
 					alignItems="center"
 					spacing={buttonSpacing}>
-					{isSmallScreen && buttons.length === 1 && (
-						<Grid item>
-							<Typography>{wording[buttons[0]]}</Typography>
-						</Grid>
-					)}
 					{showButtons2 && buttons[0] === 'FRAMES' && (
 						<Grid item>
 							<ButtonGroup

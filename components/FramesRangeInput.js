@@ -41,11 +41,6 @@ export default function FramesRangeInput({ vars }) {
 			direction="column"
 			alignItems="center"
 			spacing={isSmallScreen ? smCPButtHeadSpacing : lgCPButtHeadSpacing}>
-			{isSmallScreen && (
-				<Grid item>
-					<Typography>Frames/Range</Typography>
-				</Grid>
-			)}
 			<Grid item>
 				<div
 					className={isSmallScreen ? classes.sliderSmall : classes.sliderLarge}>
