@@ -7,11 +7,22 @@ import Typography from '@material-ui/core/Typography'
 export default function HeightStartNFinishInput({ state, setState, vars }) {
 	const { buttons } = state
 	const { setButtons } = setState
-	const { lgCPButtHeadSpacing, smCPButtHeadSpacing, isSmallScreen } = vars
+	const { isSmallScreen, CPInputs, buttonColors } = vars
+	const { buttonFocusBackground, buttonBlurBackground } =
+		buttonColors['buttonBackground']
 
-	function handleClick(value) {
+	function handleClick(value, index) {
 		const newButtons = [...buttons]
-		newButtons[2] = value
+		let arr = ['', '']
+		if (!newButtons[2]) {
+			arr[index] = value
+			newButtons[2] = arr
+		} else {
+			arr = [...newButtons[2]]
+			arr[index] = value
+			newButtons[2] = arr
+		}
+		newButtons[2] = arr
 		setButtons(newButtons)
 	}
 
@@ -29,15 +40,21 @@ export default function HeightStartNFinishInput({ state, setState, vars }) {
 									orientation={isSmallScreen ? 'vertical' : 'horizontal'}
 									color="primary"
 									aria-label="outlined secondary button group">
-									<Button value="H" onClick={() => handleClick('H')}>
-										H
-									</Button>
-									<Button value="M" onClick={() => handleClick('M')}>
-										M
-									</Button>
-									<Button value="L" onClick={() => handleClick('L')}>
-										L
-									</Button>
+									{CPInputs.height.map((item) => {
+										return (
+											<Button
+												style={{
+													background:
+														buttons[2]?.[0] === item
+															? buttonFocusBackground
+															: buttonBlurBackground,
+												}}
+												value={item}
+												onClick={() => handleClick(item, 0)}>
+												{item}
+											</Button>
+										)
+									})}
 								</ButtonGroup>
 							</Grid>
 						</Grid>
@@ -52,15 +69,21 @@ export default function HeightStartNFinishInput({ state, setState, vars }) {
 									orientation={isSmallScreen ? 'vertical' : 'horizontal'}
 									color="primary"
 									aria-label="outlined secondary button group">
-									<Button value="H" onClick={() => handleClick('H')}>
-										H
-									</Button>
-									<Button value="M" onClick={() => handleClick('M')}>
-										M
-									</Button>
-									<Button value="L" onClick={() => handleClick('L')}>
-										L
-									</Button>
+									{CPInputs.height.map((item) => {
+										return (
+											<Button
+												style={{
+													background:
+														buttons[2]?.[1] === item
+															? buttonFocusBackground
+															: buttonBlurBackground,
+												}}
+												value={item}
+												onClick={() => handleClick(item, 1)}>
+												{item}
+											</Button>
+										)
+									})}
 								</ButtonGroup>
 							</Grid>
 						</Grid>

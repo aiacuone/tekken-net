@@ -12,9 +12,13 @@ export default function Buttons({ state, setState, vars }) {
 		lgCPButtHeadSpacing,
 		wording,
 		CPSpacing,
+		CPButtons,
+		buttonColors,
 	} = vars
 	const { buttons } = state
 	const { setButtons } = setState
+	const { buttonFocusBackground, buttonBlurBackground } =
+		buttonColors['buttonBackground']
 
 	const showButtons1 =
 		!isSmallScreen || (isSmallScreen && buttons.length === 0) ? true : false
@@ -30,6 +34,7 @@ export default function Buttons({ state, setState, vars }) {
 
 	function handleClick(value, index) {
 		const newButtons = [...buttons]
+		newButtons.length === 3 && newButtons.pop()
 		index === 0 && newButtons.pop()
 		newButtons[index] = value
 		setButtons(newButtons)
@@ -43,158 +48,54 @@ export default function Buttons({ state, setState, vars }) {
 						orientation={isSmallScreen ? 'vertical' : 'horizontal'}
 						color="primary"
 						aria-label="outlined secondary button group">
-						<Button onClick={() => handleClick('FRAMES', 0)}>FRAMES</Button>
-						<Button onClick={() => handleClick('HEIGHT', 0)}>HEIGHT</Button>
-						<Button onClick={() => handleClick('KNOCKDOWN', 0)}>
-							KNOCKDOWN
-						</Button>
-						<Button onClick={() => handleClick('LAUNCH', 0)}>LAUNCH</Button>
-						<Button onClick={() => handleClick('RAGE', 0)}>RAGE</Button>
-						<Button onClick={() => handleClick('SAFETY', 0)}>SAFETY</Button>
-						<Button onClick={() => handleClick('SITUATIONAL', 0)}>
-							SITUATIONAL
-						</Button>
-						<Button onClick={() => handleClick('STRINGS', 0)}>STRINGS</Button>
+						{Object.keys(CPButtons).map((item) => {
+							return (
+								<Button
+									style={{
+										background:
+											buttons[0] === item
+												? buttonFocusBackground
+												: buttonBlurBackground,
+									}}
+									onClick={() => handleClick(item, 0)}>
+									{item}
+								</Button>
+							)
+						})}
 					</ButtonGroup>
 				</Grid>
 			)}
-			<Grid item>
-				<Grid
-					container
-					direction="column"
-					alignItems="center"
-					spacing={buttonSpacing}>
-					{showButtons2 && buttons[0] === 'FRAMES' && (
+			{showButtons2 && buttons.length > 0 && (
+				<Grid item>
+					<Grid
+						container
+						direction="column"
+						alignItems="center"
+						spacing={buttonSpacing}>
 						<Grid item>
 							<ButtonGroup
 								orientation={buttonOrientation}
 								color="primary"
 								aria-label="vertical outlined primary button group">
-								<Button onClick={() => handleClick('RANGE', 1)}>
-									{wording['RANGE']}
-								</Button>
-								<Button onClick={() => handleClick('SPECIFIC', 1)}>
-									{wording['SPECIFIC']}
-								</Button>
+								{CPButtons[buttons[0]].map((item) => {
+									return (
+										<Button
+											style={{
+												background:
+													buttons[1] === item
+														? buttonFocusBackground
+														: buttonBlurBackground,
+											}}
+											onClick={() => handleClick(item, 1)}>
+											{item}
+										</Button>
+									)
+								})}
 							</ButtonGroup>
 						</Grid>
-					)}
-					{showButtons2 && buttons[0] === 'HEIGHT' && (
-						<Grid item>
-							<ButtonGroup
-								orientation={buttonOrientation}
-								color="primary"
-								aria-label="vertical outlined primary button group">
-								<Button onClick={() => handleClick('SPECIFIC', 1)}>
-									{wording['SPECIFIC']}
-								</Button>
-								<Button onClick={() => handleClick('START & FINISH', 1)}>
-									{wording['START & FINISH']}
-								</Button>
-							</ButtonGroup>
-						</Grid>
-					)}
-					{showButtons2 && buttons[0] === 'KNOCKDOWN' && (
-						<Grid item>
-							<ButtonGroup
-								orientation={buttonOrientation}
-								color="primary"
-								aria-label="vertical outlined primary button group">
-								<Button onClick={() => handleClick('NORMAL', 1)}>
-									{wording['NORMAL']}
-								</Button>
-								<Button onClick={() => handleClick('COUNTER', 1)}>
-									{wording['COUNTER']}
-								</Button>
-							</ButtonGroup>
-						</Grid>
-					)}
-					{showButtons2 && buttons[0] === 'LAUNCH' && (
-						<Grid item>
-							<ButtonGroup
-								orientation={buttonOrientation}
-								color="primary"
-								aria-label="vertical outlined primary button group">
-								<Button onClick={() => handleClick('NORMAL', 1)}>
-									{wording['NORMAL']}
-								</Button>
-								<Button onClick={() => handleClick('LAUNCH', 1)}>
-									{wording['LAUNCH']}
-								</Button>
-							</ButtonGroup>
-						</Grid>
-					)}
-					{showButtons2 && buttons[0] === 'RAGE' && (
-						<Grid item>
-							<ButtonGroup
-								orientation={buttonOrientation}
-								color="primary"
-								aria-label="vertical outlined primary button group">
-								<Button onClick={() => handleClick('RAGE ART', 1)}>
-									{wording['RAGE ART']}
-								</Button>
-								<Button onClick={() => handleClick('RAGE DRIVE', 1)}>
-									{wording['RAGE DRIVE']}
-								</Button>
-							</ButtonGroup>
-						</Grid>
-					)}
-					{showButtons2 && buttons[0] === 'SAFETY' && (
-						<Grid item>
-							<ButtonGroup
-								orientation={buttonOrientation}
-								color="primary"
-								aria-label="vertical outlined primary button group">
-								<Button onClick={() => handleClick('SAFE', 1)}>
-									{wording['SAFE']}
-								</Button>
-								<Button onClick={() => handleClick('UNSAFE', 1)}>
-									{wording['UNSAFE']}
-								</Button>
-							</ButtonGroup>
-						</Grid>
-					)}
-					{showButtons2 && buttons[0] === 'SITUATIONAL' && (
-						<Grid item>
-							<ButtonGroup
-								orientation={buttonOrientation}
-								color="primary"
-								aria-label="vertical outlined primary button group">
-								<Button onClick={() => handleClick('+ON BLOCK', 1)}>
-									{wording['+ON BLOCK']}
-								</Button>
-								<Button onClick={() => handleClick('POWER CRUSH', 1)}>
-									{wording['POWER CRUSH']}
-								</Button>
-								<Button onClick={() => handleClick('WALL BOUNCE', 1)}>
-									{wording['WALL BOUNCE']}
-								</Button>
-								<Button onClick={() => handleClick('HOMING', 1)}>
-									{wording['HOMING']}
-								</Button>
-							</ButtonGroup>
-						</Grid>
-					)}
-					{showButtons2 && buttons[0] === 'STRINGS' && (
-						<Grid item>
-							<ButtonGroup
-								orientation={buttonOrientation}
-								color="primary"
-								aria-label="vertical outlined primary button group">
-								<Button onClick={() => handleClick('SINGLE', 1)}>
-									{wording['SINGLE']}
-								</Button>
-								<Button onClick={() => handleClick('DOUBLE', 1)}>
-									{wording['DOUBLE']}
-								</Button>
-								<Button onClick={() => handleClick('TRIPPLE', 1)}>
-									{wording['TRIPPLE']}
-								</Button>
-							</ButtonGroup>
-						</Grid>
-					)}
+					</Grid>
 				</Grid>
-			</Grid>
+			)}
 		</Grid>
 	)
 }

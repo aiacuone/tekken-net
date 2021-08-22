@@ -146,7 +146,7 @@ export default function ControlPanel({ state, setState, vars }) {
 					<Grid item>
 						<Buttons state={state} setState={setState} vars={vars} />
 					</Grid>
-					{buttons.length === 2 && (
+					{buttons.length > 1 && (
 						<Grid item>
 							<Inputs state={state} setState={setState} vars={vars} />
 						</Grid>

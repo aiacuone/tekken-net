@@ -4,11 +4,23 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 
-export default function FramesSpecificInput({ vars }) {
-	const { lgCPButtHeadSpacing, smCPButtHeadSpacing, isSmallScreen } = vars
-	0
-	function handleClick(e) {
-		return
+export default function FramesSpecificInput({ vars, state, setState }) {
+	const {
+		lgCPButtHeadSpacing,
+		smCPButtHeadSpacing,
+		isSmallScreen,
+		CPInputs,
+		buttonColors,
+	} = vars
+	const { buttons } = state
+	const { setButtons } = setState
+	const { buttonFocusBackground, buttonBlurBackground } =
+		buttonColors['buttonBackground']
+
+	function handleClick(value) {
+		const newButtons = [...buttons]
+		newButtons[2] = value
+		setButtons(newButtons)
 	}
 
 	return (
@@ -22,18 +34,21 @@ export default function FramesSpecificInput({ vars }) {
 					orientation={isSmallScreen ? 'vertical' : 'horizontal'}
 					color="primary"
 					aria-label="outlined secondary button group">
-					<Button value={'0-13'} onClick={handleClick}>
-						0-13
-					</Button>
-					<Button value={'13-17'} onClick={handleClick}>
-						13-17
-					</Button>
-					<Button value={'17-20'} onClick={handleClick}>
-						17-20
-					</Button>
-					<Button value={'20-'} onClick={handleClick}>
-						20-
-					</Button>
+					{CPInputs['framesSpecific'].map((item) => {
+						return (
+							<Button
+								style={{
+									background:
+										buttons[2] === item
+											? buttonFocusBackground
+											: buttonBlurBackground,
+								}}
+								value={item}
+								onClick={() => handleClick(item)}>
+								{item}
+							</Button>
+						)
+					})}
 				</ButtonGroup>
 			</Grid>
 		</Grid>

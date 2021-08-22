@@ -39,8 +39,28 @@ function MyApp({ Component, pageProps }) {
 			TRIPPLE: 'Tripple',
 		},
 		isSmallScreen: useMediaQuery('(max-width:600px'),
+		CPButtons: {
+			FRAMES: ['RANGE', 'SPECIFIC'],
+			HEIGHT: ['SPECIFIC', 'START & FINISH'],
+			KNOCKDOWN: ['NORMAL', 'COUNTER'],
+			LAUNCH: ['NORMAL', 'COUNTER'],
+			RAGE: ['RAGE ART', 'RAGE DRIVE'],
+			SAFETY: ['SAFE', 'UNSAFE'],
+			SITUATIONAL: ['+ON BLOCK', 'POWER CRUSH', 'WALL BOUNCE', 'HOMING'],
+			STRINGS: ['SINGLE', 'DOUBLE', 'TRIPPLE'],
+		},
+		CPInputs: {
+			framesSpecific: ['0-13', '13-17', '17-20', '20-'],
+			height: ['H', 'M', 'L'],
+		},
+		buttonColors: {
+			buttonBackground: {
+				buttonFocusBackground: 'orange',
+				buttonBlurBackground: 'white',
+			},
+		},
 	}
-
+	console.log(buttons[2])
 	return (
 		<Component {...pageProps} state={state} setState={setState} vars={vars} />
 	)

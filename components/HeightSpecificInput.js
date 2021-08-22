@@ -8,7 +8,15 @@ import Hidden from '@material-ui/core/Hidden'
 export default function HeightSpecificInput({ state, setState, vars }) {
 	const { buttons } = state
 	const { setButtons } = setState
-	const { lgCPButtHeadSpacing, smCPButtHeadSpacing, isSmallScreen } = vars
+	const {
+		lgCPButtHeadSpacing,
+		smCPButtHeadSpacing,
+		isSmallScreen,
+		CPInputs,
+		buttonColors,
+	} = vars
+	const { buttonFocusBackground, buttonBlurBackground } =
+		buttonColors['buttonBackground']
 
 	function handleClick(value) {
 		const newButtons = [...buttons]
@@ -24,15 +32,21 @@ export default function HeightSpecificInput({ state, setState, vars }) {
 						orientation={isSmallScreen ? 'vertical' : 'horizontal'}
 						color="primary"
 						aria-label="outlined secondary button group">
-						<Button value="H" onClick={() => handleClick('H')}>
-							H
-						</Button>
-						<Button value="M" onClick={() => handleClick('M')}>
-							M
-						</Button>
-						<Button value="L" onClick={() => handleClick('L')}>
-							L
-						</Button>
+						{CPInputs.height.map((item) => {
+							return (
+								<Button
+									style={{
+										background:
+											buttons[2] === item
+												? buttonFocusBackground
+												: buttonBlurBackground,
+									}}
+									value={item}
+									onClick={() => handleClick(item)}>
+									{item}
+								</Button>
+							)
+						})}
 					</ButtonGroup>
 				</Grid>
 			</Grid>
