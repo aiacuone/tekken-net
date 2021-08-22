@@ -30,7 +30,7 @@ export default function ControlPanel({ state, setState, vars }) {
 
 	function handleBack() {
 		const newButtons = [...buttons]
-		newButtons.pop()
+		newButtons.length === 3 ? newButtons.splice(1, 2) : newButtons.pop()
 		setButtons(newButtons)
 	}
 
