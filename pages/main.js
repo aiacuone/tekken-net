@@ -1,31 +1,41 @@
-import { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import ControlPanel from '../components/ControlPanel'
 import CharacterDropdown from '../components/CharacterDropdown'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
+import tekkennetLogo from '../public/images/tekkennetLogo.svg'
+import Image from 'next/image'
+import styles from '../styles/ControlPanel.module.css'
 
 export default function main({ state, setState, vars }) {
 	const { characterDropdownValue } = state
 	const { setCharacterDropdownValue } = setState
 	const { isSmallScreen, charactersArr, CPSpacing } = vars
 
+	const TekkenetLogo = () => {
+		return (
+			<Image
+				layouy="fill"
+				width="400"
+				height="50"
+				className={styles.tekkennet_logo}
+				src={tekkennetLogo}></Image>
+		)
+	}
+
 	return (
-		<Grid
-			spacing={CPSpacing}
-			container
-			alignItems="center"
-			direction="column"
-			// style={{ padding: isSmallScreen ? 0 : '10px' }}
-		>
+		<Grid spacing={CPSpacing} container alignItems="center" direction="column">
 			{!isSmallScreen && (
 				<Grid item>
 					<Grid container justifyContent="center" alignItems="center">
-						<CharacterDropdown state={state} vars={vars} setState={setState} />
+						<Grid item>
+							<CharacterDropdown
+								state={state}
+								vars={vars}
+								setState={setState}
+							/>
+						</Grid>
+						<Grid item>
+							<TekkenetLogo />
+						</Grid>
 					</Grid>
 				</Grid>
 			)}

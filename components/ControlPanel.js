@@ -10,6 +10,8 @@ import Inputs from './Inputs'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import CharacterDropdown from '../components/CharacterDropdown'
+import tekkennetLogo from '../public/images/tekkennetLogo.svg'
+import Image from 'next/image'
 
 export default function ControlPanel({ state, setState, vars }) {
 	const { buttons, expanded } = state
@@ -65,10 +67,23 @@ export default function ControlPanel({ state, setState, vars }) {
 		return
 	}
 
+	const TekkennetLogo = () => {
+		return <Image layout="fixed" height="50" width="400" src={tekkennetLogo} />
+	}
+
 	return (
-		<Grid container>
+		<Grid container justifyContent="center">
+			{isSmallScreen && (
+				<Grid item style={{ position: 'absolute', top: 3 }}>
+					<TekkennetLogo />
+				</Grid>
+			)}
 			{isSmallScreen ? (
-				<Grid container direction="column" alignItems="center">
+				<Grid
+					container
+					direction="column"
+					alignItems="center"
+					style={{ position: 'absolute', top: 40, zIndex: '-1' }}>
 					<Grid item>
 						<Accordion
 							className={styles.accordion}

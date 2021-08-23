@@ -4,8 +4,6 @@
 
 .small_cp_container {
 	height: 480px;
-	/* background: green; */
-	/* width: 100%; */
 	position: relative;
 }
 
@@ -18,3 +16,4 @@
 	position: absolute;
 	top: -90px;
 }
+
