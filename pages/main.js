@@ -22,7 +22,12 @@ export default function main({ state, setState, vars }) {
 	}
 
 	return (
-		<Grid spacing={CPSpacing} container alignItems="center" direction="column">
+		<Grid
+			spacing={CPSpacing}
+			container
+			alignItems="center"
+			direction="column"
+			style={{ padding: '10px' }}>
 			{!isSmallScreen && (
 				<Grid item>
 					<Grid container justifyContent="center" alignItems="center">
