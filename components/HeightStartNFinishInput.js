@@ -32,9 +32,11 @@ export default function HeightStartNFinishInput({ state, setState, vars }) {
 				<Grid container spacing={3}>
 					<Grid item>
 						<Grid container direction="column" alignItems="center" spacing={1}>
-							<Grid item>
-								<Typography>Start</Typography>
-							</Grid>
+							{isSmallScreen && (
+								<Grid item>
+									<Typography>Start</Typography>
+								</Grid>
+							)}
 							<Grid item>
 								<ButtonGroup
 									orientation={isSmallScreen ? 'vertical' : 'horizontal'}
@@ -61,9 +63,11 @@ export default function HeightStartNFinishInput({ state, setState, vars }) {
 					</Grid>
 					<Grid item>
 						<Grid container direction="column" alignItems="center" spacing={1}>
-							<Grid item>
-								<Typography>Finish</Typography>
-							</Grid>
+							{isSmallScreen && (
+								<Grid item>
+									<Typography>Finish</Typography>
+								</Grid>
+							)}
 							<Grid item>
 								<ButtonGroup
 									orientation={isSmallScreen ? 'vertical' : 'horizontal'}

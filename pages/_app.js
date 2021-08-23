@@ -5,13 +5,14 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 function MyApp({ Component, pageProps }) {
 	const [buttons, setButtons] = useState([])
 	const [expanded, setExpanded] = useState(false)
-	const state = { buttons, expanded }
-	const setState = { setButtons, setExpanded }
+	const [characterDropdownValue, setCharacterDropdownValue] = useState('')
+	const state = { buttons, expanded, characterDropdownValue }
+	const setState = { setButtons, setExpanded, setCharacterDropdownValue }
 	const vars = {
 		smCPSpacing: 3,
 		lgCPButtHeadSpacing: 1,
 		smCPButtHeadSpacing: 3,
-		CPSpacing: 2,
+		CPSpacing: 1,
 		wording: {
 			FRAMES: 'Frames',
 			HEIGHT: 'Height',
@@ -59,8 +60,57 @@ function MyApp({ Component, pageProps }) {
 				buttonBlurBackground: 'white',
 			},
 		},
+		charactersArr: [
+			'Akuma',
+			'Alisa',
+			'Anna',
+			'Armor King',
+			'Asuka',
+			'Bob',
+			'Bryan',
+			'Claudio',
+			'Devil Jin',
+			'Dragunov',
+			'Eddy',
+			'Eliza',
+			'Fahkumram',
+			'Feng',
+			'Ganryu',
+			'Geese',
+			'Gigas',
+			'Heihachi',
+			'Hwoarang',
+			'Jack',
+			'Jin',
+			'Josie',
+			'Julia',
+			'Katarina',
+			'Kazumi',
+			'Kazuya',
+			'King',
+			'Kuma',
+			'Lars',
+			'Law',
+			'Lee',
+			'Lei',
+			'Leo',
+			'Leroy',
+			'Lili',
+			'LuckyChoe',
+			'Marduk',
+			'MasterRaven',
+			'Miguel',
+			'Negan',
+			'Nina',
+			'Noctis',
+			'Paul',
+			'Shaheen',
+			'Steve',
+			'Xiaoyu',
+			'Yoshimitsu',
+			'Zafina',
+		],
 	}
-	console.log(buttons)
 	return (
 		<Component {...pageProps} state={state} setState={setState} vars={vars} />
 	)

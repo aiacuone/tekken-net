@@ -3,9 +3,10 @@
 }
 
 .small_cp_container {
-	height: 350px;
+	height: 480px;
 	/* background: green; */
 	/* width: 100%; */
+	position: relative;
 }
 
 .smallCPHeader {

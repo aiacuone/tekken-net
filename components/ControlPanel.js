@@ -9,6 +9,7 @@ import Buttons from './Buttons'
 import Inputs from './Inputs'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import CharacterDropdown from '../components/CharacterDropdown'
 
 export default function ControlPanel({ state, setState, vars }) {
 	const { buttons, expanded } = state
@@ -91,6 +92,13 @@ export default function ControlPanel({ state, setState, vars }) {
 									alignItems="center"
 									justifyContent="center"
 									spacing={smCPSpacing}>
+									<Grid item style={{ position: 'absolute', top: -20 }}>
+										<CharacterDropdown
+											state={state}
+											setState={setState}
+											vars={vars}
+										/>
+									</Grid>
 									{buttons.length > 0 && (
 										<Grid item>
 											<Button
