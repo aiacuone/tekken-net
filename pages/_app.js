@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }) {
 			},
 		},
 	}
-	console.log(buttons[2])
+	console.log(buttons)
 	return (
 		<Component {...pageProps} state={state} setState={setState} vars={vars} />
 	)

@@ -13,13 +13,35 @@ import Typography from '@material-ui/core/Typography'
 export default function ControlPanel({ state, setState, vars }) {
 	const { buttons, expanded } = state
 	const { setExpanded, setButtons } = setState
-	const {
-		isSmallScreen,
-		CPSpacing,
-		smCPButtHeadSpacing,
-		wording,
-		smCPSpacing,
-	} = vars
+	const { isSmallScreen, CPSpacing, wording, smCPSpacing } = vars
+
+	const inputValues = [
+		'RANGE',
+		'SPECIFIC',
+		'START & FINISH',
+		'HEIGHT',
+		'FRAMES',
+	]
+
+	const isInputValue = inputValues.indexOf(buttons[1]) > -1 ? true : false
+	const isButtonValue = inputValues.indexOf(buttons[1]) === -1 ? true : false
+	const enableSubmitButton =
+		(isInputValue &&
+			buttons.length === 3 &&
+			buttons[1] === 'START & FINISH' &&
+			buttons[2][0] &&
+			buttons[2][1]) ||
+		(isInputValue && buttons[1] === 'RANGE') ||
+		(isInputValue && buttons.length === 3 && buttons[1] !== 'START & FINISH') ||
+		(isButtonValue && buttons.length > 1)
+			? true
+			: false
+	const showSubmitButton =
+		(buttons[0] && inputValues.indexOf(buttons[0]) === -1) ||
+		inputValues.indexOf(buttons[1]) > -1
+			? true
+			: false
+
 	const handleChange = (panel) => (event, isExpanded) => {
 		setButtons([])
 		setExpanded(isExpanded ? panel : false)
@@ -30,7 +52,11 @@ export default function ControlPanel({ state, setState, vars }) {
 
 	function handleBack() {
 		const newButtons = [...buttons]
-		newButtons.length === 3 ? newButtons.splice(1, 2) : newButtons.pop()
+		newButtons.length > 2
+			? newButtons.splice(1, 2)
+			: isButtonValue
+			? newButtons.splice(0, 2)
+			: newButtons.pop()
 		setButtons(newButtons)
 	}
 
@@ -77,14 +103,14 @@ export default function ControlPanel({ state, setState, vars }) {
 										</Grid>
 									)}
 
-									{buttons.length < 2 ? (
+									{!isInputValue ? (
 										<Grid item>
 											<Grid
 												container
 												direction="column"
 												alignItems="center"
 												style={{ position: 'relative' }}>
-												{buttons.length === 1 && (
+												{buttons.length < 3 && (
 													<Grid item className={styles.smallCPHeader}>
 														<Typography>{wording[buttons[0]]}</Typography>
 													</Grid>
@@ -121,13 +147,14 @@ export default function ControlPanel({ state, setState, vars }) {
 											</Grid>
 										</Grid>
 									)}
-									{buttons.length > 0 && (
+									{showSubmitButton && (
 										<Grid item className={styles.back_small_CP}>
 											<Button
 												variant="outlined"
 												size="small"
 												color="primary"
-												onClick={handleSubmit}>
+												onClick={handleSubmit}
+												disabled={!enableSubmitButton}>
 												Submit
 											</Button>
 										</Grid>

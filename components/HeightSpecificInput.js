@@ -1,20 +1,12 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import Hidden from '@material-ui/core/Hidden'
 
 export default function HeightSpecificInput({ state, setState, vars }) {
 	const { buttons } = state
 	const { setButtons } = setState
-	const {
-		lgCPButtHeadSpacing,
-		smCPButtHeadSpacing,
-		isSmallScreen,
-		CPInputs,
-		buttonColors,
-	} = vars
+	const { isSmallScreen, CPInputs, buttonColors } = vars
 	const { buttonFocusBackground, buttonBlurBackground } =
 		buttonColors['buttonBackground']
 

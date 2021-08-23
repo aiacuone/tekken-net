@@ -10,7 +10,6 @@ export default function Buttons({ state, setState, vars }) {
 		isSmallScreen,
 		smCPButtHeadSpacing,
 		lgCPButtHeadSpacing,
-		wording,
 		CPSpacing,
 		CPButtons,
 		buttonColors,
@@ -24,7 +23,7 @@ export default function Buttons({ state, setState, vars }) {
 		!isSmallScreen || (isSmallScreen && buttons.length === 0) ? true : false
 
 	const showButtons2 =
-		!isSmallScreen || (isSmallScreen && buttons.length === 1) ? true : false
+		!isSmallScreen || (isSmallScreen && buttons.length > 0) ? true : false
 
 	const buttonOrientation = isSmallScreen ? 'vertical' : 'horizontal'
 
