@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Slider from '@material-ui/core/Slider'
 import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
+import { lgCPButtHeadSpacing, smCPButtHeadSpacing } from '../utils/vars'
 
 const useStyles = makeStyles({
 	sliderSmall: {
@@ -13,10 +13,10 @@ const useStyles = makeStyles({
 	},
 })
 
-export default function FramesRangeInput({ vars }) {
+export default function FramesRangeInput({ state }) {
 	const [value1, setValue1] = useState(10)
 	const [value2, setValue2] = useState(25)
-	const { lgCPButtHeadSpacing, smCPButtHeadSpacing, isSmallScreen } = vars
+	const { isSmallScreen } = state
 
 	function valuetext(value, index) {
 		index === 0 ? setValue1(value) : setValue2(value)
