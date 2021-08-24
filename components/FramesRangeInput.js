@@ -13,13 +13,15 @@ const useStyles = makeStyles({
 	},
 })
 
-export default function FramesRangeInput({ state }) {
-	const [value1, setValue1] = useState(10)
-	const [value2, setValue2] = useState(25)
-	const { isSmallScreen } = state
+export default function FramesRangeInput({ state, setState }) {
+	const { isSmallScreen, framesRange } = state
+	const { setFramesRange } = setState
+
+	function handleChange(e, arr) {
+		setFramesRange({ min: arr[0], max: arr[1] })
+	}
 
 	function valuetext(value, index) {
-		index === 0 ? setValue1(value) : setValue2(value)
 		return `${value}`
 	}
 
@@ -27,12 +29,12 @@ export default function FramesRangeInput({ state }) {
 
 	const marks = [
 		{
-			value: value1,
-			label: value1,
+			value: framesRange['min'],
+			label: framesRange['min'],
 		},
 		{
-			value: value2,
-			label: value2,
+			value: framesRange['max'],
+			label: framesRange['max'],
 		},
 	]
 	return (
@@ -51,6 +53,7 @@ export default function FramesRangeInput({ state }) {
 						aria-labelledby="track-inverted-range-slider"
 						getAriaValueText={valuetext}
 						marks={marks}
+						onChange={handleChange}
 					/>
 				</div>
 			</Grid>

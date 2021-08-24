@@ -20,11 +20,11 @@ export default function CharacterDropdown({ state, setState }) {
 				onChange={handleSelect}
 				displayEmpty
 				inputProps={{ 'aria-label': 'Without label' }}>
-				<MenuItem value="">
+				{/* <MenuItem value="">
 					<Grid container justifyContent="center">
 						<em>Character</em>
 					</Grid>
-				</MenuItem>
+				</MenuItem> */}
 				{charactersArr.map((character) => {
 					return (
 						<MenuItem value={character} key={character}>

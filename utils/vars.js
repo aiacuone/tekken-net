@@ -99,3 +99,11 @@ export const charactersArr = [
 	'Yoshimitsu',
 	'Zafina',
 ]
+
+export const inputValues = [
+	'RANGE',
+	'SPECIFIC',
+	'START & FINISH',
+	'HEIGHT',
+	'FRAMES',
+]

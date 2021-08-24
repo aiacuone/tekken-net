@@ -8,6 +8,7 @@ import {
 	cpSpacing,
 	buttonColors,
 	cpButtons,
+	inputValues,
 } from '../utils/vars'
 
 export default function Buttons({ state, setState }) {
@@ -35,6 +36,26 @@ export default function Buttons({ state, setState }) {
 		newButtons[index] = value
 		setButtons(newButtons)
 	}
+
+	const isInputValue = inputValues.indexOf(buttons[1]) > -1 ? true : false
+	const isButtonValue = inputValues.indexOf(buttons[1]) === -1 ? true : false
+
+	const callCreateTable =
+		(buttons[0] && buttons[1] && !isSmallScreen && isButtonValue) ||
+		(buttons[0] && buttons[1] && !isSmallScreen && buttons[1] === 'RANGE') ||
+		(buttons[0] &&
+			buttons[1] &&
+			buttons[2] &&
+			!isSmallScreen &&
+			buttons[1] !== 'START & FINISH') ||
+		(buttons[0] &&
+			buttons[1] &&
+			buttons[2]?.[0] &&
+			buttons[2]?.[1] &&
+			!isSmallScreen)
+			? true
+			: false
+	callCreateTable && console.log('create table')
 
 	return (
 		<Grid container direction="column" alignItems="center" spacing={cpSpacing}>

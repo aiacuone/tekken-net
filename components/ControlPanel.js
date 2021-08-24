@@ -12,19 +12,18 @@ import Typography from '@material-ui/core/Typography'
 import CharacterDropdown from '../components/CharacterDropdown'
 import tekkennetLogo from '../public/images/tekkennetLogo.svg'
 import Image from 'next/image'
-import { cpSpacing, wording, smCPSpacing } from '../utils/vars'
+import { cpSpacing, wording, smCPSpacing, inputValues } from '../utils/vars'
+import { createTable } from '../utils/functions'
 
 export default function ControlPanel({ state, setState }) {
-	const { buttons, expanded, isSmallScreen } = state
+	const {
+		buttons,
+		expanded,
+		isSmallScreen,
+		framesRange,
+		characterDropdownValue,
+	} = state
 	const { setExpanded, setButtons } = setState
-
-	const inputValues = [
-		'RANGE',
-		'SPECIFIC',
-		'START & FINISH',
-		'HEIGHT',
-		'FRAMES',
-	]
 
 	const isInputValue = inputValues.indexOf(buttons[1]) > -1 ? true : false
 	const isButtonValue = inputValues.indexOf(buttons[1]) === -1 ? true : false
@@ -65,7 +64,28 @@ export default function ControlPanel({ state, setState }) {
 	}
 
 	function handleSubmit() {
-		return
+		setExpanded(false)
+		const attr1 =
+			buttons[1] === 'RANGE'
+				? framesRange['min']
+				: buttons[1] === 'SPECIFIC'
+				? buttons[2]
+				: buttons[1] === 'START & FINISH'
+				? buttons[2][0]
+				: null
+		const attr2 =
+			buttons[1] === 'RANGE'
+				? framesRange['max']
+				: buttons[1] === 'START & FINISH'
+				? buttons[2][1]
+				: null
+		createTable({
+			character: characterDropdownValue,
+			attr1,
+			attr2,
+			button1: buttons[0],
+			button2: buttons[1],
+		})
 	}
 
 	const TekkennetLogo = () => {

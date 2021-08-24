@@ -81,7 +81,6 @@ export const getCharacterMoves = {
 		NORMAL: function ({ character }) {
 			let regex = /knd/i
 			let arr = []
-			console.log('knockfunction')
 			for (let i = 0; i < character.length; i++) {
 				if (regex.test(character[i]['Hit frame'])) {
 					arr.push(character[i])
