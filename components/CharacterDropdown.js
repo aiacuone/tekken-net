@@ -1,40 +1,36 @@
-import React from 'react'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
-import Grid from '@material-ui/core/Grid'
-import { charactersArr } from '../utils/vars'
+import React from "react";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Grid from "@material-ui/core/Grid";
+import { charactersArr } from "../utils/vars";
 
 export default function CharacterDropdown({ state, setState }) {
-	const { setCharacterDropdownValue } = setState
-	const { characterDropdownValue } = state
+  const { setCharacterDropdownValue } = setState;
+  const { characterDropdownValue } = state;
 
-	function handleSelect(e) {
-		setCharacterDropdownValue(e.target.value)
-	}
+  function handleSelect(e) {
+    setCharacterDropdownValue(e.target.value);
+  }
 
-	return (
-		<FormControl style={{ minWidth: '120px' }}>
-			<Select
-				value={characterDropdownValue}
-				onChange={handleSelect}
-				displayEmpty
-				inputProps={{ 'aria-label': 'Without label' }}>
-				{/* <MenuItem value="">
-					<Grid container justifyContent="center">
-						<em>Character</em>
-					</Grid>
-				</MenuItem> */}
-				{charactersArr.map((character) => {
-					return (
-						<MenuItem value={character} key={character}>
-							<Grid container justifyContent="center">
-								{character}
-							</Grid>
-						</MenuItem>
-					)
-				})}
-			</Select>
-		</FormControl>
-	)
+  return (
+    <FormControl style={{ minWidth: "120px" }}>
+      <Select
+        value={characterDropdownValue}
+        onChange={handleSelect}
+        displayEmpty
+        inputProps={{ "aria-label": "Without label" }}
+      >
+        {charactersArr.map((character) => {
+          return (
+            <MenuItem value={character} key={character}>
+              <Grid container justifyContent="center">
+                {character}
+              </Grid>
+            </MenuItem>
+          );
+        })}
+      </Select>
+    </FormControl>
+  );
 }
