@@ -12,37 +12,17 @@ import Typography from "@material-ui/core/Typography";
 import CharacterDropdown from "../components/CharacterDropdown";
 import tekkennetLogo from "../public/images/tekkennetLogo.svg";
 import Image from "next/image";
-import { cpSpacing, wording, smCPSpacing, inputValues } from "../utils/vars";
-import { createTable } from "../utils/functions";
+import { cpSpacing, wording, smCPSpacing } from "../utils/vars";
 
 export default function ControlPanel({ state, setState }) {
   const {
     buttons,
     expanded,
     isSmallScreen,
-    framesRange,
-    characterDropdownValue,
+    enableSubmitButton,
+    showSubmitButton,
   } = state;
   const { setExpanded, setButtons } = setState;
-
-  const isInputValue = inputValues.indexOf(buttons[1]) > -1 ? true : false;
-  const isButtonValue = inputValues.indexOf(buttons[1]) === -1 ? true : false;
-  const enableSubmitButton =
-    (isInputValue &&
-      buttons.length === 3 &&
-      buttons[1] === "START & FINISH" &&
-      buttons[2][0] &&
-      buttons[2][1]) ||
-    (isInputValue && buttons[1] === "RANGE") ||
-    (isInputValue && buttons.length === 3 && buttons[1] !== "START & FINISH") ||
-    (isButtonValue && buttons.length > 1)
-      ? true
-      : false;
-  const showSubmitButton =
-    (buttons[0] && inputValues.indexOf(buttons[0]) === -1) ||
-    inputValues.indexOf(buttons[1]) > -1
-      ? true
-      : false;
 
   function handleAccordion() {
     setButtons([]);
@@ -65,27 +45,7 @@ export default function ControlPanel({ state, setState }) {
 
   function handleSubmit() {
     setExpanded(false);
-    const attr1 =
-      buttons[1] === "RANGE"
-        ? framesRange["min"]
-        : buttons[1] === "SPECIFIC"
-        ? buttons[2]
-        : buttons[1] === "START & FINISH"
-        ? buttons[2][0]
-        : null;
-    const attr2 =
-      buttons[1] === "RANGE"
-        ? framesRange["max"]
-        : buttons[1] === "START & FINISH"
-        ? buttons[2][1]
-        : null;
-    createTable({
-      character: characterDropdownValue,
-      attr1,
-      attr2,
-      button1: buttons[0],
-      button2: buttons[1],
-    });
+    setShowTable(true);
   }
 
   const TekkennetLogo = () => {

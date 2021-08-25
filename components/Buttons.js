@@ -8,12 +8,10 @@ import {
   cpSpacing,
   buttonColors,
   cpButtons,
-  inputValues,
 } from "../utils/vars";
-import { createTable } from "../utils/functions";
 
 export default function Buttons({ state, setState }) {
-  const { buttons, isSmallScreen, characterDropdownValue, framesRange } = state;
+  const { buttons, isSmallScreen } = state;
   const { setButtons } = setState;
   const { buttonFocusBackground, buttonBlurBackground } =
     buttonColors["buttonBackground"];
@@ -36,52 +34,6 @@ export default function Buttons({ state, setState }) {
     index === 0 && newButtons.pop();
     newButtons[index] = value;
     setButtons(newButtons);
-  }
-
-  const isInputValue = inputValues.indexOf(buttons[1]) > -1 ? true : false;
-  const isButtonValue = inputValues.indexOf(buttons[1]) === -1 ? true : false;
-
-  const isReadyToCreateTable =
-    (buttons[0] && buttons[1] && !isSmallScreen && isButtonValue) ||
-    (buttons[0] && buttons[1] && !isSmallScreen && buttons[1] === "RANGE") ||
-    (buttons[0] &&
-      buttons[1] &&
-      buttons[2] &&
-      !isSmallScreen &&
-      buttons[1] !== "START & FINISH") ||
-    (buttons[0] &&
-      buttons[1] &&
-      buttons[2]?.[0] &&
-      buttons[2]?.[1] &&
-      !isSmallScreen)
-      ? true
-      : false;
-
-  isReadyToCreateTable && handleCreateTable();
-
-  function handleCreateTable() {
-    const attr1 =
-      buttons[1] === "RANGE"
-        ? framesRange["min"]
-        : buttons[1] === "SPECIFIC"
-        ? buttons[2]
-        : buttons[1] === "START & FINISH"
-        ? buttons[2][0]
-        : null;
-    const attr2 =
-      buttons[1] === "RANGE"
-        ? framesRange["max"]
-        : buttons[1] === "START & FINISH"
-        ? buttons[2][1]
-        : null;
-
-    createTable({
-      character: characterDropdownValue,
-      attr1,
-      attr2,
-      button1: buttons[0],
-      button2: buttons[1],
-    });
   }
 
   return (
