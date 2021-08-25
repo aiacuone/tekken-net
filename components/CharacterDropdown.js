@@ -25,7 +25,7 @@ export default function CharacterDropdown({ state, setState }) {
           return (
             <MenuItem value={character} key={character}>
               <Grid container justifyContent="center">
-                {character}
+                {character.toUpperCase()}
               </Grid>
             </MenuItem>
           );
