@@ -6,7 +6,7 @@ import Image from 'next/image'
 import styles from '../styles/ControlPanel.module.css'
 import globalStyles from '../styles/Home.module.css'
 import { cpSpacing } from '../utils/vars'
-import { Table } from '../components/Table'
+import { MovesTable } from '../components/Table'
 
 export default function main({ state, setState }) {
   const { isSmallScreen } = state
@@ -50,12 +50,12 @@ export default function main({ state, setState }) {
         </Grid>
       )}
 
-      <Grid item>
+      <Grid item style={{ height: '180px' }}>
         <ControlPanel state={state} setState={setState} />
       </Grid>
 
       <Grid item>
-        <Table state={state} />
+        <MovesTable state={state} />
       </Grid>
     </Grid>
   )
