@@ -1,27 +1,25 @@
 import React from "react";
-import { createTable } from "../utils/functions";
+import { characters } from "../characters/index";
+import { getCharacterMoves } from "../utils/getCharacterMoves";
 
 let filteredMoveList = [];
 
 export function getFilteredMoveList({
-  attr1,
-  attr2,
-  character,
   button1,
   button2,
+  character,
+  attr1,
+  attr2,
 }) {
-  filteredMoveList = [];
-  const moveList = createTable({
-    character,
+  const moveList = getCharacterMoves[button1][button2]({
+    character: characters[character],
     attr1,
     attr2,
-    button1,
-    button2,
   });
-  console.log(moveList);
   filteredMoveList = moveList;
 }
 
 export function Table({ state, setState }) {
+  console.log(filteredMoveList, "filteredMoveList in Table");
   return <div></div>;
 }
