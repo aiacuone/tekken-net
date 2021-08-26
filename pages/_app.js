@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }) {
   const [characterDropdownValue, setCharacterDropdownValue] = useState('akuma')
   const [smallCPshowTable, setSmallCPshowTable] = useState(false)
   const isSmallScreen = useMediaQuery('(max-width:600px')
+  const isMediumScreen = useMediaQuery('(max-width:1920')
   const isInputValue = inputValues.indexOf(buttons[1]) > -1 ? true : false
   const isButtonValue = inputValues.indexOf(buttons[1]) === -1 ? true : false
 
@@ -60,6 +61,7 @@ function MyApp({ Component, pageProps }) {
     smallCPshowTable,
     attr1,
     attr2,
+    isMediumScreen,
   }
   const setState = {
     setButtons,

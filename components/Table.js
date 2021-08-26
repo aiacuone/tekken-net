@@ -29,6 +29,8 @@ export function getFilteredMoveList({
 }
 
 export function MovesTable({ state, setState }) {
+  const { isMediumScreen } = state
+
   const columns = [
     { id: 'Command', label: 'Command', minWidth: 170, align: 'center' },
     { id: 'Hit level', label: 'Hit level', minWidth: 100, align: 'center' },
@@ -75,8 +77,7 @@ export function MovesTable({ state, setState }) {
       width: '100%',
     },
     container: {
-      maxHeight: 800,
-      // height: '100%',
+      maxHeight: isMediumScreen ? 700 : 1000,
     },
   })
 

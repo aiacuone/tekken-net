@@ -1,40 +1,25 @@
 export const getCharacterMoves = {
   HEIGHT: {
-    SPECIFIC: function ({ attr1: height, character }) {
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        let filteredMove = character[i]['Hit level'].replace(' ', '')
-        if (filteredMove === height) {
-          arr.push(character[i])
-        }
-      }
-      return arr
+    SPECIFIC: ({ attr1: height, character }) => {
+      return character.filter((move) => {
+        return move['Hit level'] === height
+      })
     },
 
     'START & FINISH': function ({ attr1: a, attr2: b, character }) {
-      let arr = [] // eslint-disable-next-line
-      let regex = new RegExp('^\\' + a + '.+' + '\\' + b + '\\s*$')
-      for (let i = 0; i < character.length; i++) {
-        if (regex.test(character[i]['Hit level'])) {
-          if (character[i]['Hit level'].length <= 8) {
-            arr.push(character[i])
-          }
-        }
-      }
-      return arr
+      const regex = new RegExp('^\\' + a + '.+' + '\\' + b + '\\s*$')
+      return character.filter((move) => {
+        return regex.test(move['Hit level'])
+      })
     },
   },
 
   LAUNCH: {
     NORMAL: function ({ character }) {
-      let regex = /launch/i
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if (regex.test(character[i]['Hit frame'])) {
-          arr.push(character[i])
-        }
-      }
-      return arr
+      const regex = /launch/i
+      return character.filter((move) => {
+        return regex.test(move['Hit frame'])
+      })
     },
 
     COUNTER: function ({ character }) {
