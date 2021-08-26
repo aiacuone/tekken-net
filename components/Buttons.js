@@ -9,9 +9,17 @@ import {
   buttonColors,
   cpButtons,
 } from "../utils/vars";
+import { getFilteredMoveList } from "../components/Table";
 
 export default function Buttons({ state, setState }) {
-  const { buttons, isSmallScreen } = state;
+  const {
+    buttons,
+    isSmallScreen,
+    attr1,
+    attr2,
+    characterDropdownValue,
+    isButtonValue,
+  } = state;
   const { setButtons } = setState;
   const { buttonFocusBackground, buttonBlurBackground } =
     buttonColors["buttonBackground"];
@@ -35,6 +43,31 @@ export default function Buttons({ state, setState }) {
     newButtons[index] = value;
     setButtons(newButtons);
   }
+
+  const showTable =
+    (buttons[0] && buttons[1] && !isSmallScreen && isButtonValue) ||
+    (buttons[0] && buttons[1] && !isSmallScreen && buttons[1] === "RANGE") ||
+    (buttons[0] &&
+      buttons[1] &&
+      buttons[2] &&
+      !isSmallScreen &&
+      buttons[1] !== "START & FINISH") ||
+    (buttons[0] &&
+      buttons[1] &&
+      buttons[2]?.[0] &&
+      buttons[2]?.[1] &&
+      !isSmallScreen)
+      ? true
+      : false;
+
+  showTable &&
+    getFilteredMoveList({
+      attr1,
+      attr2,
+      button1: buttons[0],
+      button2: buttons[1],
+      character: characterDropdownValue,
+    });
 
   return (
     <Grid container direction="column" alignItems="center" spacing={cpSpacing}>

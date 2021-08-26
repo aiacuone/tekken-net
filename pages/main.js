@@ -6,7 +6,7 @@ import Image from "next/image";
 import styles from "../styles/ControlPanel.module.css";
 import globalStyles from "../styles/Home.module.css";
 import { cpSpacing } from "../utils/vars";
-import Table from "../components/Table";
+import { Table } from "../components/Table";
 
 export default function main({ state, setState }) {
   const { isSmallScreen } = state;

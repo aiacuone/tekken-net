@@ -8,26 +8,26 @@ function MyApp({ Component, pageProps }) {
   const [expanded, setExpanded] = useState(false);
   const [framesRange, setFramesRange] = useState({ min: 10, max: 25 });
   const [characterDropdownValue, setCharacterDropdownValue] = useState("akuma");
-
+  const [smallCPshowTable, setSmallCPshowTable] = useState(false);
   const isSmallScreen = useMediaQuery("(max-width:600px");
   const isInputValue = inputValues.indexOf(buttons[1]) > -1 ? true : false;
   const isButtonValue = inputValues.indexOf(buttons[1]) === -1 ? true : false;
 
-  const showTable =
-    (buttons[0] && buttons[1] && !isSmallScreen && isButtonValue) ||
-    (buttons[0] && buttons[1] && !isSmallScreen && buttons[1] === "RANGE") ||
-    (buttons[0] &&
-      buttons[1] &&
-      buttons[2] &&
-      !isSmallScreen &&
-      buttons[1] !== "START & FINISH") ||
-    (buttons[0] &&
-      buttons[1] &&
-      buttons[2]?.[0] &&
-      buttons[2]?.[1] &&
-      !isSmallScreen)
-      ? true
-      : false;
+  const attr1 =
+    buttons[1] === "RANGE"
+      ? framesRange["min"]
+      : buttons[1] === "SPECIFIC"
+      ? buttons[2]
+      : buttons[1] === "START & FINISH"
+      ? buttons[2]?.[0]
+      : null;
+
+  const attr2 =
+    buttons[1] === "RANGE"
+      ? framesRange["max"]
+      : buttons[1] === "START & FINISH"
+      ? buttons[2]?.[1]
+      : null;
 
   const enableSubmitButton =
     (isInputValue &&
@@ -53,17 +53,20 @@ function MyApp({ Component, pageProps }) {
     characterDropdownValue,
     isSmallScreen,
     framesRange,
-    showTable,
     isButtonValue,
     isInputValue,
     enableSubmitButton,
     showSubmitButton,
+    smallCPshowTable,
+    attr1,
+    attr2,
   };
   const setState = {
     setButtons,
     setExpanded,
     setCharacterDropdownValue,
     setFramesRange,
+    setSmallCPshowTable,
   };
 
   return <Component {...pageProps} state={state} setState={setState} />;

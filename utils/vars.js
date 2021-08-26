@@ -41,7 +41,7 @@ export const cpButtons = {
 };
 export const cpInputs = {
   framesSpecific: ["0-13", "13-17", "17-20", "20-"],
-  height: ["H", "M", "L"],
+  height: ["h", "m", "l"],
 };
 export const buttonColors = {
   buttonBackground: {

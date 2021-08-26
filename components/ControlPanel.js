@@ -13,6 +13,7 @@ import CharacterDropdown from "../components/CharacterDropdown";
 import tekkennetLogo from "../public/images/tekkennetLogo.svg";
 import Image from "next/image";
 import { cpSpacing, wording, smCPSpacing } from "../utils/vars";
+import { getFilteredMoveList } from "../components/Table";
 
 export default function ControlPanel({ state, setState }) {
   const {
@@ -21,6 +22,11 @@ export default function ControlPanel({ state, setState }) {
     isSmallScreen,
     enableSubmitButton,
     showSubmitButton,
+    isInputValue,
+    attr1,
+    attr2,
+    characterDropdownValue,
+    isButtonValue,
   } = state;
   const { setExpanded, setButtons } = setState;
 
@@ -44,8 +50,13 @@ export default function ControlPanel({ state, setState }) {
   }
 
   function handleSubmit() {
-    setExpanded(false);
-    setShowTable(true);
+    getFilteredMoveList({
+      attr1,
+      attr2,
+      character: characterDropdownValue,
+      button1: buttons[0],
+      button2: buttons[1],
+    });
   }
 
   const TekkennetLogo = () => {
