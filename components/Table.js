@@ -1,8 +1,8 @@
-import React from "react";
-import { characters } from "../characters/index";
-import { getCharacterMoves } from "../utils/getCharacterMoves";
+import React from 'react'
+import { characters } from '../characters/index'
+import { getCharacterMoves } from '../utils/getCharacterMoves'
 
-let filteredMoveList = [];
+let filteredMoveList = []
 
 export function getFilteredMoveList({
   button1,
@@ -15,11 +15,11 @@ export function getFilteredMoveList({
     character: characters[character],
     attr1,
     attr2,
-  });
-  filteredMoveList = moveList;
+  })
+  filteredMoveList = moveList
 }
 
 export function Table({ state, setState }) {
-  console.log(filteredMoveList, "filteredMoveList in Table");
-  return <div></div>;
+  console.log(filteredMoveList, 'filteredMoveList in Table')
+  return <div></div>
 }

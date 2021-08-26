@@ -1,29 +1,29 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import { cpInputs, buttonColors } from "../utils/vars";
+import React from 'react'
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import { cpInputs, buttonColors } from '../utils/vars'
 
 export default function HeightStartNFinishInput({ state, setState }) {
-  const { buttons, isSmallScreen } = state;
-  const { setButtons } = setState;
+  const { buttons, isSmallScreen } = state
+  const { setButtons } = setState
   const { buttonFocusBackground, buttonBlurBackground } =
-    buttonColors["buttonBackground"];
+    buttonColors['buttonBackground']
 
   function handleClick(value, index) {
-    const newButtons = [...buttons];
-    let arr = ["", ""];
+    const newButtons = [...buttons]
+    let arr = ['', '']
     if (!newButtons[2]) {
-      arr[index] = value;
-      newButtons[2] = arr;
+      arr[index] = value
+      newButtons[2] = arr
     } else {
-      arr = [...newButtons[2]];
-      arr[index] = value;
-      newButtons[2] = arr;
+      arr = [...newButtons[2]]
+      arr[index] = value
+      newButtons[2] = arr
     }
-    newButtons[2] = arr;
-    setButtons(newButtons);
+    newButtons[2] = arr
+    setButtons(newButtons)
   }
 
   return (
@@ -39,10 +39,9 @@ export default function HeightStartNFinishInput({ state, setState }) {
               )}
               <Grid item>
                 <ButtonGroup
-                  orientation={isSmallScreen ? "vertical" : "horizontal"}
+                  orientation={isSmallScreen ? 'vertical' : 'horizontal'}
                   color="primary"
-                  aria-label="outlined secondary button group"
-                >
+                  aria-label="outlined secondary button group">
                   {cpInputs.height.map((item) => {
                     return (
                       <Button
@@ -54,11 +53,10 @@ export default function HeightStartNFinishInput({ state, setState }) {
                               : buttonBlurBackground,
                         }}
                         value={item}
-                        onClick={() => handleClick(item, 0)}
-                      >
+                        onClick={() => handleClick(item, 0)}>
                         {item}
                       </Button>
-                    );
+                    )
                   })}
                 </ButtonGroup>
               </Grid>
@@ -73,10 +71,9 @@ export default function HeightStartNFinishInput({ state, setState }) {
               )}
               <Grid item>
                 <ButtonGroup
-                  orientation={isSmallScreen ? "vertical" : "horizontal"}
+                  orientation={isSmallScreen ? 'vertical' : 'horizontal'}
                   color="primary"
-                  aria-label="outlined secondary button group"
-                >
+                  aria-label="outlined secondary button group">
                   {cpInputs.height.map((item) => {
                     return (
                       <Button
@@ -88,11 +85,10 @@ export default function HeightStartNFinishInput({ state, setState }) {
                               : buttonBlurBackground,
                         }}
                         value={item}
-                        onClick={() => handleClick(item, 1)}
-                      >
+                        onClick={() => handleClick(item, 1)}>
                         {item}
                       </Button>
-                    );
+                    )
                   })}
                 </ButtonGroup>
               </Grid>
@@ -101,5 +97,5 @@ export default function HeightStartNFinishInput({ state, setState }) {
         </Grid>
       </Grid>
     </Grid>
-  );
+  )
 }

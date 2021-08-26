@@ -1,15 +1,15 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
+import React from 'react'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
 import {
   smCPButtHeadSpacing,
   lgCPButtHeadSpacing,
   cpSpacing,
   buttonColors,
   cpButtons,
-} from "../utils/vars";
-import { getFilteredMoveList } from "../components/Table";
+} from '../utils/vars'
+import { getFilteredMoveList } from '../components/Table'
 
 export default function Buttons({ state, setState }) {
   const {
@@ -19,46 +19,46 @@ export default function Buttons({ state, setState }) {
     attr2,
     characterDropdownValue,
     isButtonValue,
-  } = state;
-  const { setButtons } = setState;
+  } = state
+  const { setButtons } = setState
   const { buttonFocusBackground, buttonBlurBackground } =
-    buttonColors["buttonBackground"];
+    buttonColors['buttonBackground']
 
   const showButtons1 =
-    !isSmallScreen || (isSmallScreen && buttons.length === 0) ? true : false;
+    !isSmallScreen || (isSmallScreen && buttons.length === 0) ? true : false
 
   const showButtons2 =
-    !isSmallScreen || (isSmallScreen && buttons.length > 0) ? true : false;
+    !isSmallScreen || (isSmallScreen && buttons.length > 0) ? true : false
 
-  const buttonOrientation = isSmallScreen ? "vertical" : "horizontal";
+  const buttonOrientation = isSmallScreen ? 'vertical' : 'horizontal'
 
   const buttonSpacing = isSmallScreen
     ? smCPButtHeadSpacing
-    : lgCPButtHeadSpacing;
+    : lgCPButtHeadSpacing
 
   function handleClick(value, index) {
-    const newButtons = [...buttons];
-    newButtons.length === 3 && newButtons.pop();
-    index === 0 && newButtons.pop();
-    newButtons[index] = value;
-    setButtons(newButtons);
+    const newButtons = [...buttons]
+    newButtons.length === 3 && newButtons.pop()
+    index === 0 && newButtons.pop()
+    newButtons[index] = value
+    setButtons(newButtons)
   }
 
   const showTable =
     (buttons[0] && buttons[1] && !isSmallScreen && isButtonValue) ||
-    (buttons[0] && buttons[1] && !isSmallScreen && buttons[1] === "RANGE") ||
+    (buttons[0] && buttons[1] && !isSmallScreen && buttons[1] === 'RANGE') ||
     (buttons[0] &&
       buttons[1] &&
       buttons[2] &&
       !isSmallScreen &&
-      buttons[1] !== "START & FINISH") ||
+      buttons[1] !== 'START & FINISH') ||
     (buttons[0] &&
       buttons[1] &&
       buttons[2]?.[0] &&
       buttons[2]?.[1] &&
       !isSmallScreen)
       ? true
-      : false;
+      : false
 
   showTable &&
     getFilteredMoveList({
@@ -67,17 +67,16 @@ export default function Buttons({ state, setState }) {
       button1: buttons[0],
       button2: buttons[1],
       character: characterDropdownValue,
-    });
+    })
 
   return (
     <Grid container direction="column" alignItems="center" spacing={cpSpacing}>
       {showButtons1 && (
         <Grid item>
           <ButtonGroup
-            orientation={isSmallScreen ? "vertical" : "horizontal"}
+            orientation={isSmallScreen ? 'vertical' : 'horizontal'}
             color="primary"
-            aria-label="outlined secondary button group"
-          >
+            aria-label="outlined secondary button group">
             {Object.keys(cpButtons).map((item) => {
               return (
                 <Button
@@ -88,11 +87,10 @@ export default function Buttons({ state, setState }) {
                         ? buttonFocusBackground
                         : buttonBlurBackground,
                   }}
-                  onClick={() => handleClick(item, 0)}
-                >
+                  onClick={() => handleClick(item, 0)}>
                   {item}
                 </Button>
-              );
+              )
             })}
           </ButtonGroup>
         </Grid>
@@ -103,14 +101,12 @@ export default function Buttons({ state, setState }) {
             container
             direction="column"
             alignItems="center"
-            spacing={buttonSpacing}
-          >
+            spacing={buttonSpacing}>
             <Grid item>
               <ButtonGroup
                 orientation={buttonOrientation}
                 color="primary"
-                aria-label="vertical outlined primary button group"
-              >
+                aria-label="vertical outlined primary button group">
                 {cpButtons[buttons[0]].map((item) => {
                   return (
                     <Button
@@ -121,11 +117,10 @@ export default function Buttons({ state, setState }) {
                             ? buttonFocusBackground
                             : buttonBlurBackground,
                       }}
-                      onClick={() => handleClick(item, 1)}
-                    >
+                      onClick={() => handleClick(item, 1)}>
                       {item}
                     </Button>
-                  );
+                  )
                 })}
               </ButtonGroup>
             </Grid>
@@ -133,5 +128,5 @@ export default function Buttons({ state, setState }) {
         </Grid>
       )}
     </Grid>
-  );
+  )
 }

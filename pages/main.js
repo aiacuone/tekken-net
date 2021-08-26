@@ -1,15 +1,15 @@
-import Grid from "@material-ui/core/Grid";
-import ControlPanel from "../components/ControlPanel";
-import CharacterDropdown from "../components/CharacterDropdown";
-import tekkennetLogo from "../public/images/tekkennetLogo.svg";
-import Image from "next/image";
-import styles from "../styles/ControlPanel.module.css";
-import globalStyles from "../styles/Home.module.css";
-import { cpSpacing } from "../utils/vars";
-import { Table } from "../components/Table";
+import Grid from '@material-ui/core/Grid'
+import ControlPanel from '../components/ControlPanel'
+import CharacterDropdown from '../components/CharacterDropdown'
+import tekkennetLogo from '../public/images/tekkennetLogo.svg'
+import Image from 'next/image'
+import styles from '../styles/ControlPanel.module.css'
+import globalStyles from '../styles/Home.module.css'
+import { cpSpacing } from '../utils/vars'
+import { Table } from '../components/Table'
 
 export default function main({ state, setState }) {
-  const { isSmallScreen } = state;
+  const { isSmallScreen } = state
 
   const TekkenetLogo = () => {
     return (
@@ -17,10 +17,9 @@ export default function main({ state, setState }) {
         width="400"
         height="50"
         className={styles.tekkennet_logo}
-        src={tekkennetLogo}
-      ></Image>
-    );
-  };
+        src={tekkennetLogo}></Image>
+    )
+  }
 
   return (
     <Grid
@@ -28,8 +27,7 @@ export default function main({ state, setState }) {
       container
       alignItems="center"
       direction="column"
-      style={{ padding: "10px" }}
-    >
+      style={{ padding: '10px' }}>
       <Grid item className={globalStyles.background}>
         <Image
           alt="Mountains"
@@ -60,5 +58,5 @@ export default function main({ state, setState }) {
         <Table state={state} />
       </Grid>
     </Grid>
-  );
+  )
 }
