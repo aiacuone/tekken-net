@@ -116,9 +116,6 @@ export const getCharacterMoves = {
       if (!moveList) {
         return []
       }
-      if (!moveList) {
-        return []
-      }
       return moveList.filter((move) => {
         const filteredMove = move['Block frame'].replace('~', ' ')
         if (filteredMove.substring(0, 3) > -10) {
