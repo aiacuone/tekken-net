@@ -1,224 +1,226 @@
 export const getCharacterMoves = {
   HEIGHT: {
-    SPECIFIC: ({ attr1: height, character }) => {
-      return character.filter((move) => {
+    SPECIFIC: ({ attr1: height, character: moveList }) => {
+      if (!moveList) {
+        return []
+      }
+      return moveList.filter((move) => {
         return move['Hit level'] === height
       })
     },
 
-    'START & FINISH': function ({ attr1: a, attr2: b, character }) {
-      const regex = new RegExp('^\\' + a + '.+' + '\\' + b + '\\s*$')
-      return character.filter((move) => {
+    'START & FINISH': ({
+      attr1: start,
+      attr2: finish,
+      character: moveList,
+    }) => {
+      if (!moveList) {
+        return []
+      }
+      const regex = new RegExp('^\\' + start + '.+' + '\\' + finish + '\\s*$')
+      return moveList.filter((move) => {
         return regex.test(move['Hit level'])
       })
     },
   },
 
   LAUNCH: {
-    NORMAL: function ({ character }) {
+    NORMAL: ({ character: moveList }) => {
+      if (!moveList) {
+        return []
+      }
       const regex = /launch/i
-      return character.filter((move) => {
+      return moveList.filter((move) => {
         return regex.test(move['Hit frame'])
       })
     },
 
-    COUNTER: function ({ character }) {
-      let regex = /launch/i
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if (regex.test(character[i]['Counter hit frame'])) {
-          arr.push(character[i])
-        }
+    COUNTER: ({ character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-      return arr
+      let regex = /launch/i
+      return moveList.filter((move) => {
+        return regex.test(move['Counter hit frame'])
+      })
     },
   },
 
   FRAMES: {
-    SPECIFIC: function ({ attr1: frames, character }) {
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        let filteredMove = character[i]['Start up frame'].replace('~', ' ')
-        if (filteredMove.substring(0, 2) === frames) {
-          arr.push(character[i])
-        }
+    SPECIFIC: ({ attr1: frames, character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-
-      return arr
+      return moveList.filter((move) => {
+        return move['Start up frame'] === frames
+      })
     },
 
-    RANGE: function ({ attr1: min, attr2: max, character }) {
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        let filteredMove = character[i]['Start up frame'].replace('~', ' ')
-        if (
-          filteredMove.substring(0, 3) >= min &&
-          filteredMove.substring(0, 3) <= max
-        ) {
-          arr.push(character[i])
-        }
+    RANGE: ({ attr1: min, attr2: max, character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-      return arr
+      return moveList.filter((move) => {
+        const filteredMove = move['Start up frame']
+          .replace('~', ' ')
+          .substring(0, 3)
+        return filteredMove >= min && filteredMove <= max
+      })
     },
   },
 
   KNOCKDOWN: {
-    NORMAL: function ({ character }) {
-      let regex = /knd/i
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if (regex.test(character[i]['Hit frame'])) {
-          arr.push(character[i])
-        }
+    NORMAL: ({ character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-
-      return arr
+      const regex = /knd/i
+      return moveList.filter((move) => {
+        return regex.test(move['Hit frame'])
+      })
     },
 
-    COUNTER: function ({ character }) {
-      let regex = /knd/i
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if (regex.test(character[i]['Counter hit frame'])) {
-          arr.push(character[i])
-        }
+    COUNTER: ({ character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-      return arr
+      const regex = /knd/i
+      return moveList.filter((move) => {
+        return regex.test(move['Counter hit frame'])
+      })
     },
   },
 
   RAGE: {
-    'RAGE ART': function ({ character }) {
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if (character[i]['Notes'] === 'Rage art') {
-          arr.push(character[i])
-        }
+    'RAGE ART': ({ character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-      return arr
+      return moveList.filter((move) => {
+        return move['Notes'] === 'Rage art'
+      })
     },
 
-    'RAGE DRIVE': function ({ character }) {
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if (character[i]['Notes'] === 'Rage drive') {
-          arr.push(character[i])
-        }
+    'RAGE DRIVE': ({ character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-      return arr
+      return moveList.filter((move) => {
+        return move['Notes'] === 'Rage drive'
+      })
     },
   },
 
   SAFETY: {
-    SAFE: function ({ character }) {
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        let filteredScript = character[i]['Block frame'].replace('~', ' ')
-        if (filteredScript.substring(0, 3) > -10) {
-          if (filteredScript !== '') {
-            arr.push(character[i])
+    SAFE: ({ character: moveList }) => {
+      if (!moveList) {
+        return []
+      }
+      return moveList.filter((move) => {
+        const filteredMove = move['Block frame'].replace('~', ' ')
+        if (filteredMove.substring(0, 3) > -10) {
+          if (filteredMove !== '') {
+            return move
           }
         }
-      }
-      return arr
+      })
     },
 
-    UNSAFE: function ({ character }) {
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        let filtered = character[i]['Block frame'].replace('~', ' ')
-        if (filtered.substring(0, 3) < -9) {
-          arr.push(character[i])
-        }
+    UNSAFE: ({ character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-      return arr
+      return moveList.filter((move) => {
+        const filteredMove = move['Block frame'].replace('~', ' ')
+
+        return filteredMove.substring(0, 3) < -9
+      })
     },
   },
 
   SITUATIONAL: {
-    '+ON BLOCK': function ({ character }) {
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        let filteredMove = character[i]['Block frame'].replace('~', ' ')
-        if (filteredMove.substring(0, 3) > 0) {
-          arr.push(character[i])
-        }
+    '+ON BLOCK': ({ character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-      return arr
+      return moveList.filter((move) => {
+        const filteredMove = move['Block frame'].replace('~', ' ')
+        return filteredMove.substring(0, 3) > 0
+      })
     },
 
-    'POWER CRUSH': function ({ character }) {
-      let regex = /power crush/i
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if (regex.test(character[i]['Notes'])) {
-          arr.push(character[i])
-        }
+    'POWER CRUSH': ({ character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-      return arr
+      const regex = /power crush/i
+      return moveList.filter((move) => {
+        return regex.test(move['Notes'])
+      })
     },
 
-    'WALL BOUNCE': function ({ character }) {
-      let regex = /wall bounce/i
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if (regex.test(character[i]['Notes'])) {
-          arr.push(character[i])
-        }
+    'WALL BOUNCE': ({ character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-      return arr
+      const regex = /wall bounce/i
+      return moveList.filter((move) => {
+        return regex.test(move['Notes'])
+      })
     },
 
-    HOMING: function ({ character }) {
-      let regex = /homing/i
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if (regex.test(character[i]['Notes'])) {
-          arr.push(character[i])
-        }
+    HOMING: ({ character: moveList }) => {
+      if (!moveList) {
+        return []
       }
-      return arr
+      const regex = /homing/i
+      return moveList.filter((move) => {
+        return regex.test(move['Notes'])
+      })
     },
   },
 
   STRINGS: {
-    SINGLE: function ({ character }) {
-      let regex = /,/i
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if (regex.test(character[i]['Damage']) === false) {
-          if (character[i]['Damage'] !== '') {
-            arr.push(character[i])
+    SINGLE: ({ character: moveList }) => {
+      if (!moveList) {
+        return []
+      }
+      const regex = /,/i
+      return moveList.filter((move) => {
+        if (regex.test(move['Damage']) === false) {
+          if (move['Damage'] !== '') {
+            return move
           }
         }
-      }
-      return arr
+      })
     },
 
-    DOUBLE: function ({ character }) {
-      let regex = /,/gi
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if ((character[i]['Damage'].match(regex) || []).length === 1) {
-          if (character[i]['Damage'] !== '') {
-            arr.push(character[i])
+    DOUBLE: ({ character: moveList }) => {
+      if (!moveList) {
+        return []
+      }
+      const regex = /,/gi
+      return moveList.filter((move) => {
+        if ((move['Damage'].match(regex) || []).length === 1) {
+          if (move['Damage'] !== '') {
+            return move
           }
         }
-      }
-      return arr
+      })
     },
 
-    TRIPPLE: function ({ character }) {
-      let regex = /,/gi
-      let arr = []
-      for (let i = 0; i < character.length; i++) {
-        if ((character[i]['Damage'].match(regex) || []).length === 2) {
-          if (character[i]['Damage'] !== '') {
-            arr.push(character[i])
+    TRIPPLE: ({ character: moveList }) => {
+      if (!moveList) {
+        return []
+      }
+      const regex = /,/gi
+      return moveList.filter((move) => {
+        if ((move['Damage'].match(regex) || []).length === 2) {
+          if (move['Damage'] !== '') {
+            return move
           }
         }
-      }
-      return arr
+      })
     },
   },
 }
