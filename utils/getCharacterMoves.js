@@ -1,14 +1,24 @@
 export const getCharacterMoves = {
   HEIGHT: {
-    SPECIFIC: ({ attr1: height, character }) => {
-      return character.filter((move) => {
+    SPECIFIC: ({ attr1: height, character: moveList }) => {
+      if (!moveList) {
+        return []
+      }
+      return moveList.filter((move) => {
         return move['Hit level'] === height
       })
     },
 
-    'START & FINISH': ({ attr1: start, attr2: finish, character }) => {
+    'START & FINISH': ({
+      attr1: start,
+      attr2: finish,
+      character: moveList,
+    }) => {
+      if (!moveList) {
+        return []
+      }
       const regex = new RegExp('^\\' + start + '.+' + '\\' + finish + '\\s*$')
-      return character.filter((move) => {
+      return moveList.filter((move) => {
         return regex.test(move['Hit level'])
       })
     },
