@@ -13,6 +13,7 @@ import tekkennetLogo from '../public/images/tekkennetLogo.svg'
 import Image from 'next/image'
 import { cpSpacing, wording, smCPSpacing } from '../utils/vars'
 import { getFilteredMoveList } from '../components/Table'
+import styles from '../styles/Global.module.css'
 
 export default function ControlPanel({ state, setState }) {
   const {

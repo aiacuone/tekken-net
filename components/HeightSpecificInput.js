@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Grid from '@material-ui/core/Grid'
 import { cpInputs, buttonColors } from '../utils/vars'
+import styles from '../styles/Global.module.css'
 
 export default function HeightSpecificInput({ state, setState }) {
   const { buttons, isSmallScreen } = state

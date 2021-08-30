@@ -4,6 +4,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import Grid from '@material-ui/core/Grid'
 import { charactersArr } from '../utils/vars'
+import styles from '../styles/Global.module.css'
 
 export default function CharacterDropdown({ state, setState }) {
   const { setCharacterDropdownValue } = setState

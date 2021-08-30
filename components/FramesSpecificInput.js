@@ -8,6 +8,7 @@ import {
   cpInputs,
   buttonColors,
 } from '../utils/vars'
+import styles from '../styles/Global.module.css'
 
 export default function FramesSpecificInput({ state, setState }) {
   const { buttons, isSmallScreen } = state

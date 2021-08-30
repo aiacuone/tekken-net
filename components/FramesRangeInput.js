@@ -3,6 +3,7 @@ import Slider from '@material-ui/core/Slider'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import { lgCPButtHeadSpacing, smCPButtHeadSpacing } from '../utils/vars'
+import styles from '../styles/Global.module.css'
 
 const useStyles = makeStyles({
   sliderSmall: {

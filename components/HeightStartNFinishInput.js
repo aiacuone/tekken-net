@@ -4,6 +4,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { cpInputs, buttonColors } from '../utils/vars'
+import styles from '../styles/Global.module.css'
 
 export default function HeightStartNFinishInput({ state, setState }) {
   const { buttons, isSmallScreen } = state

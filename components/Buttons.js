@@ -10,6 +10,7 @@ import {
   cpButtons,
 } from '../utils/vars'
 import { getFilteredMoveList } from '../components/Table'
+import styles from '../styles/Global.module.css'
 
 export default function Buttons({ state, setState }) {
   const {
