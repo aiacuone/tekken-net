@@ -50,7 +50,7 @@ export default function main({ state, setState }) {
         </Grid>
       )}
 
-      <Grid item style={{ height: '180px' }}>
+      <Grid item style={{ height: '180px' }} className={styles.control_panel}>
         <ControlPanel state={state} setState={setState} />
       </Grid>
 

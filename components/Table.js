@@ -11,7 +11,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
 
-let filteredMoveList = []
+let filteredMoveList = null
 
 export function getFilteredMoveList({
   button1,
@@ -29,7 +29,7 @@ export function getFilteredMoveList({
 }
 
 export function MovesTable({ state, setState }) {
-  const { isMediumScreen } = state
+  const { isMediumScreen, isSmallScreen } = state
 
   const columns = [
     { id: 'Command', label: 'Command', minWidth: 170, align: 'center' },
@@ -74,7 +74,7 @@ export function MovesTable({ state, setState }) {
 
   const useStyles = makeStyles({
     root: {
-      width: '100%',
+      width: isSmallScreen ? '300px' : '100%',
     },
     container: {
       maxHeight: isMediumScreen ? 700 : 1000,
@@ -95,55 +95,59 @@ export function MovesTable({ state, setState }) {
   }
 
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}>
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredMoveList &&
-              filteredMoveList
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.code}>
-                      {columns.map((column) => {
-                        const value = row[column.id]
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {value}
-                          </TableCell>
-                        )
-                      })}
-                    </TableRow>
-                  )
-                })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={filteredMoveList.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
+    <>
+      {filteredMoveList && (
+        <Paper className={classes.root}>
+          <TableContainer className={classes.container}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}>
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {filteredMoveList &&
+                  filteredMoveList
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row) => {
+                      return (
+                        <TableRow
+                          hover
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={row.code}>
+                          {columns.map((column) => {
+                            const value = row[column.id]
+                            return (
+                              <TableCell key={column.id} align={column.align}>
+                                {value}
+                              </TableCell>
+                            )
+                          })}
+                        </TableRow>
+                      )
+                    })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={filteredMoveList.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+      )}
+    </>
   )
 }

@@ -50,6 +50,7 @@ export default function ControlPanel({ state, setState }) {
   }
 
   function handleSubmit() {
+    setExpanded(false)
     getFilteredMoveList({
       attr1,
       attr2,
