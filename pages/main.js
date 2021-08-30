@@ -3,8 +3,6 @@ import ControlPanel from '../components/ControlPanel'
 import CharacterDropdown from '../components/CharacterDropdown'
 import tekkennetLogo from '../public/images/tekkennetLogo.svg'
 import Image from 'next/image'
-import styles from '../styles/ControlPanel.module.css'
-import globalStyles from '../styles/Home.module.css'
 import { cpSpacing } from '../utils/vars'
 import { MovesTable } from '../components/Table'
 
@@ -12,23 +10,12 @@ export default function main({ state, setState }) {
   const { isSmallScreen } = state
 
   const TekkenetLogo = () => {
-    return (
-      <Image
-        width="400"
-        height="50"
-        className={styles.tekkennet_logo}
-        src={tekkennetLogo}></Image>
-    )
+    return <Image width="400" height="50" src={tekkennetLogo}></Image>
   }
 
   return (
-    <Grid
-      spacing={cpSpacing}
-      container
-      alignItems="center"
-      direction="column"
-      style={{ padding: '10px' }}>
-      <Grid item className={globalStyles.background}>
+    <Grid spacing={cpSpacing} container alignItems="center" direction="column">
+      <Grid item>
         <Image
           alt="Mountains"
           src="/images/background3.jpg"
@@ -50,7 +37,7 @@ export default function main({ state, setState }) {
         </Grid>
       )}
 
-      <Grid item style={{ height: '180px' }} className={styles.control_panel}>
+      <Grid item>
         <ControlPanel state={state} setState={setState} />
       </Grid>
 

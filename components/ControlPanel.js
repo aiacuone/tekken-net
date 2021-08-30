@@ -4,7 +4,6 @@ import Accordion from '@material-ui/core/Accordion'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import AccordionDetails from '@material-ui/core/AccordionDetails'
 import MenuIcon from '@material-ui/icons/Menu'
-import styles from '../styles/ControlPanel.module.css'
 import Buttons from './Buttons'
 import Inputs from './Inputs'
 import Button from '@material-ui/core/Button'
@@ -67,40 +66,26 @@ export default function ControlPanel({ state, setState }) {
   return (
     <Grid container justifyContent="center">
       {isSmallScreen && (
-        <Grid item style={{ position: 'absolute', top: 3 }}>
+        <Grid item>
           <TekkennetLogo />
         </Grid>
       )}
       {isSmallScreen ? (
-        <Grid
-          container
-          direction="column"
-          alignItems="center"
-          style={{ position: 'absolute', top: 40, zIndex: '-1' }}>
+        <Grid container direction="column" alignItems="center">
           <Grid item>
-            <Accordion
-              className={styles.accordion}
-              expanded={expanded}
-              onChange={handleAccordion}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}>
+            <Accordion expanded={expanded} onChange={handleAccordion}>
               <AccordionSummary
                 expandIcon={<MenuIcon fontSize="medium" />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"></AccordionSummary>
               <AccordionDetails>
                 <Grid
-                  className={styles.small_cp_container}
                   container
                   direction="column"
                   alignItems="center"
                   justifyContent="center"
                   spacing={smCPSpacing}>
-                  <Grid item style={{ position: 'absolute', top: -20 }}>
+                  <Grid item>
                     <CharacterDropdown state={state} setState={setState} />
                   </Grid>
                   {buttons.length > 0 && (
@@ -117,13 +102,9 @@ export default function ControlPanel({ state, setState }) {
 
                   {!isInputValue ? (
                     <Grid item>
-                      <Grid
-                        container
-                        direction="column"
-                        alignItems="center"
-                        style={{ position: 'relative' }}>
+                      <Grid container direction="column" alignItems="center">
                         {buttons.length < 3 && (
-                          <Grid item className={styles.smallCPHeader}>
+                          <Grid item>
                             <Typography>{wording[buttons[0]]}</Typography>
                           </Grid>
                         )}
@@ -134,13 +115,13 @@ export default function ControlPanel({ state, setState }) {
                       </Grid>
                     </Grid>
                   ) : (
-                    <Grid item style={{ position: 'relative' }}>
+                    <Grid item>
                       <Grid
                         container
                         direction="column"
                         justifyContent="center"
                         alignItems="center">
-                        <Grid item className={styles.input_header}>
+                        <Grid item>
                           <Typography noWrap>{`${wording[buttons[0]]} / ${
                             wording[buttons[1]]
                           }`}</Typography>
@@ -152,7 +133,7 @@ export default function ControlPanel({ state, setState }) {
                     </Grid>
                   )}
                   {showSubmitButton && (
-                    <Grid item className={styles.back_small_CP}>
+                    <Grid item>
                       <Button
                         variant="outlined"
                         size="small"

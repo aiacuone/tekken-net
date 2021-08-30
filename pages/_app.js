@@ -1,4 +1,3 @@
-import '../styles/globals.css'
 import { useState } from 'react'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { inputValues } from '../utils/vars'

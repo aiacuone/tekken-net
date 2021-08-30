@@ -14,7 +14,7 @@ export default function CharacterDropdown({ state, setState }) {
   }
 
   return (
-    <FormControl style={{ minWidth: '120px' }}>
+    <FormControl>
       <Select
         value={characterDropdownValue}
         onChange={handleSelect}
