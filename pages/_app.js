@@ -35,7 +35,6 @@ function MyApp({ Component, pageProps }) {
       ? buttons[2]?.[1]
       : null
 
-  console.log(attr1, attr2)
   const enableSubmitButton =
     (isInputValue &&
       buttons.length === 3 &&
