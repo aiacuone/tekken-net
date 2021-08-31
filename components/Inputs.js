@@ -13,7 +13,7 @@ export default function Inputs({ state, setState }) {
       {firstButton === 'FRAMES' && secondButton === 'RANGE' && (
         <FramesRangeInput state={state} setState={setState} />
       )}
-      {firstButton === 'FRAMES' && secondButton === 'SPECIFIC' && (
+      {firstButton === 'FRAMES' && secondButton === 'GROUP' && (
         <FramesSpecificInput state={state} setState={setState} />
       )}
       {firstButton === 'HEIGHT' && secondButton === 'SPECIFIC' && (

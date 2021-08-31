@@ -13,13 +13,16 @@ function MyApp({ Component, pageProps }) {
   const isMediumScreen = useMediaQuery('(max-width:1920')
   const isInputValue = inputValues.indexOf(buttons[1]) > -1 ? true : false
   const isButtonValue = inputValues.indexOf(buttons[1]) === -1 ? true : false
+  const [notify, setNotify] = useState(false)
 
   const attr1 =
     buttons[1] === 'RANGE'
       ? framesRange['min']
-      : buttons[1] === 'SPECIFIC'
+      : buttons[0] === 'HEIGHT' && buttons[1] === 'SPECIFIC'
       ? buttons[2]
       : buttons[1] === 'START & FINISH'
+      ? buttons[2]?.[0]
+      : buttons[0] === 'FRAMES' && buttons[1] === 'GROUP'
       ? buttons[2]?.[0]
       : null
 
@@ -28,8 +31,11 @@ function MyApp({ Component, pageProps }) {
       ? framesRange['max']
       : buttons[1] === 'START & FINISH'
       ? buttons[2]?.[1]
+      : buttons[0] === 'FRAMES' && buttons[1] === 'GROUP'
+      ? buttons[2]?.[1]
       : null
 
+  console.log(attr1, attr2)
   const enableSubmitButton =
     (isInputValue &&
       buttons.length === 3 &&
@@ -62,6 +68,7 @@ function MyApp({ Component, pageProps }) {
     attr1,
     attr2,
     isMediumScreen,
+    notify,
   }
   const setState = {
     setButtons,
@@ -69,6 +76,7 @@ function MyApp({ Component, pageProps }) {
     setCharacterDropdownValue,
     setFramesRange,
     setSmallCPshowTable,
+    setNotify,
   }
 
   return <Component {...pageProps} state={state} setState={setState} />

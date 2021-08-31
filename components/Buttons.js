@@ -30,7 +30,7 @@ export default function Buttons({ state, setState }) {
     characterDropdownValue,
     isButtonValue,
   } = state
-  const { setButtons } = setState
+  const { setButtons, setNotify } = setState
   const { buttonFocusBackground } = buttonColors['buttonBackground']
 
   const showButtons1 =
@@ -46,6 +46,7 @@ export default function Buttons({ state, setState }) {
     : lgCPButtHeadSpacing
 
   function handleClick(value, index) {
+    index === 1 && setNotify(true)
     const newButtons = [...buttons]
     newButtons.length === 3 && newButtons.pop()
     index === 0 && newButtons.pop()

@@ -47,12 +47,23 @@ export const getCharacterMoves = {
   },
 
   FRAMES: {
-    SPECIFIC: ({ attr1: frames, character: moveList }) => {
+    GROUP: ({ attr1: min, attr2: max, character: moveList }) => {
       if (!moveList) {
         return []
       }
+      if (!max) {
+        return moveList.filter((move) => {
+          const filteredMove = move['Start up frame']
+            .replace('~', ' ')
+            .substring(0, 3)
+          return filteredMove >= min
+        })
+      }
       return moveList.filter((move) => {
-        return move['Start up frame'] === frames
+        const filteredMove = move['Start up frame']
+          .replace('~', ' ')
+          .substring(0, 3)
+        return filteredMove >= min && filteredMove <= max
       })
     },
 

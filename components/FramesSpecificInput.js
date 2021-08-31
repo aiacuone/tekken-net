@@ -47,7 +47,7 @@ export default function FramesSpecificInput({ state, setState }) {
                 }}
                 value={item}
                 onClick={() => handleClick(item)}>
-                {item}
+                {item[1] ? `${item[0]} - ${item[1]}` : `${item[0]} -`}
               </Button>
             )
           })}

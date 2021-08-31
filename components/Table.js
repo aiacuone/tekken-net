@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { characters } from '../characters/index'
 import { getCharacterMoves } from '../utils/getCharacterMoves'
 import { makeStyles } from '@material-ui/core/styles'
@@ -11,6 +11,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
 import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 
 let filteredMoveList = []
 
@@ -30,7 +31,7 @@ export function getFilteredMoveList({
 }
 
 export function MovesTable({ state, setState }) {
-  const { isMediumScreen, isSmallScreen } = state
+  const { isMediumScreen, isSmallScreen, notify } = state
 
   const columns = [
     { id: 'Command', label: 'Command', minWidth: 170, align: 'center' },
@@ -86,8 +87,8 @@ export function MovesTable({ state, setState }) {
   })
 
   const classes = useStyles()
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(10)
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -99,9 +100,7 @@ export function MovesTable({ state, setState }) {
   }
 
   return (
-    <Grid
-      container
-      style={{ background: 'yellow', height: '100%', overflowY: 'auto' }}>
+    <Grid container style={{ height: '100%', overflowY: 'auto' }}>
       {filteredMoveList.length > 0 && (
         <Paper className={classes.root}>
           <TableContainer className={classes.container}>
@@ -155,6 +154,11 @@ export function MovesTable({ state, setState }) {
           />
         </Paper>
       )}
+      {filteredMoveList.length === 0 && notify ? (
+        <Typography variant="h6">No Moves Available</Typography>
+      ) : filteredMoveList.length === 0 ? (
+        <Typography variant="h6">Please Make a Selection</Typography>
+      ) : null}
     </Grid>
   )
 }

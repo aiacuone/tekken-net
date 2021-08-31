@@ -30,7 +30,7 @@ export const wording = {
 }
 
 export const cpButtons = {
-  FRAMES: ['RANGE', 'SPECIFIC'],
+  FRAMES: ['RANGE', 'GROUP'],
   HEIGHT: ['SPECIFIC', 'START & FINISH'],
   KNOCKDOWN: ['NORMAL', 'COUNTER'],
   LAUNCH: ['NORMAL', 'COUNTER'],
@@ -40,7 +40,7 @@ export const cpButtons = {
   STRINGS: ['SINGLE', 'DOUBLE', 'TRIPPLE'],
 }
 export const cpInputs = {
-  framesSpecific: ['0-13', '13-17', '17-20', '20-'],
+  framesSpecific: [[0, 13], [13, 17], [17, 20], [20]],
   height: ['h', 'm', 'l'],
 }
 export const buttonColors = {
@@ -108,11 +108,3 @@ export const inputValues = [
   'HEIGHT',
   'FRAMES',
 ]
-
-// export const useStyles = makeStyles((theme) => ({
-//   button: {
-//     '&:hover': {
-//       borderColor: 'grey',
-//     },
-//   },
-// }))
