@@ -18,7 +18,7 @@
 }
 
 .tekkennet_logo {
-  z-index: -10;
+  z-index: 10;
 }
 
 .control_panel {

@@ -50,11 +50,19 @@ export default function main({ state, setState }) {
         </Grid>
       )}
 
-      <Grid item style={{ height: '180px' }} className={styles.control_panel}>
+      <Grid
+        item
+        style={{ height: isSmallScreen ? '100px' : '180px' }}
+        className={styles.control_panel}>
         <ControlPanel state={state} setState={setState} />
       </Grid>
 
-      <Grid item>
+      <Grid
+        item
+        style={{
+          height: isSmallScreen && '80vh',
+          maxHeight: isSmallScreen && '650px',
+        }}>
         <MovesTable state={state} />
       </Grid>
     </Grid>
