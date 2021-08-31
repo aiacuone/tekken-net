@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Grid from '@material-ui/core/Grid'
 import { cpInputs, buttonColors } from '../utils/vars'
+import { buttonStyles } from '../components/Buttons'
 
 export default function HeightSpecificInput({ state, setState }) {
   const { buttons, isSmallScreen } = state
@@ -16,6 +17,8 @@ export default function HeightSpecificInput({ state, setState }) {
     setButtons(newButtons)
   }
 
+  const classes = buttonStyles()
+
   return (
     <>
       <Grid container direction="column" alignItems="center">
@@ -27,12 +30,12 @@ export default function HeightSpecificInput({ state, setState }) {
             {cpInputs.height.map((item) => {
               return (
                 <Button
+                  color="info"
+                  severity="info"
+                  className={classes.button}
                   key={item}
                   style={{
-                    background:
-                      buttons[2] === item
-                        ? buttonFocusBackground
-                        : buttonBlurBackground,
+                    background: buttons[2] === item && buttonFocusBackground,
                   }}
                   value={item}
                   onClick={() => handleClick(item)}>

@@ -30,8 +30,8 @@ export default function main({ state, setState }) {
       style={{ padding: '10px' }}>
       <Grid item className={globalStyles.background}>
         <Image
-          alt="Mountains"
-          src="/images/background3.jpg"
+          // alt="Mountains"
+          src="/images/backgroundSVG.svg"
           layout="fill"
           objectFit="cover"
           quality={100}

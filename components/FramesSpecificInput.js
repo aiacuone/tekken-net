@@ -8,6 +8,7 @@ import {
   cpInputs,
   buttonColors,
 } from '../utils/vars'
+import { buttonStyles } from '../components/Buttons'
 
 export default function FramesSpecificInput({ state, setState }) {
   const { buttons, isSmallScreen } = state
@@ -20,6 +21,8 @@ export default function FramesSpecificInput({ state, setState }) {
     newButtons[2] = value
     setButtons(newButtons)
   }
+
+  const classes = buttonStyles()
 
   return (
     <Grid
@@ -35,12 +38,12 @@ export default function FramesSpecificInput({ state, setState }) {
           {cpInputs['framesSpecific'].map((item) => {
             return (
               <Button
+                className={classes.button}
+                color="info"
+                severity="info"
                 key={item}
                 style={{
-                  background:
-                    buttons[2] === item
-                      ? buttonFocusBackground
-                      : buttonBlurBackground,
+                  background: buttons[2] === item && buttonFocusBackground,
                 }}
                 value={item}
                 onClick={() => handleClick(item)}>

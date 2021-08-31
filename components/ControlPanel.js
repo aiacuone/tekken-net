@@ -108,7 +108,8 @@ export default function ControlPanel({ state, setState }) {
                       <Button
                         variant="outlined"
                         size="small"
-                        color="primary"
+                        color="info"
+                        severity="info"
                         onClick={handleBack}>
                         Back
                       </Button>
@@ -156,7 +157,8 @@ export default function ControlPanel({ state, setState }) {
                       <Button
                         variant="outlined"
                         size="small"
-                        color="primary"
+                        color="info"
+                        severity="info"
                         onClick={handleSubmit}
                         disabled={!enableSubmitButton}>
                         Submit

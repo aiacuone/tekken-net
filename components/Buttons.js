@@ -8,8 +8,18 @@ import {
   cpSpacing,
   buttonColors,
   cpButtons,
+  // useStyles,
 } from '../utils/vars'
 import { getFilteredMoveList } from '../components/Table'
+import { makeStyles } from '@material-ui/core/styles'
+
+export const buttonStyles = makeStyles((theme) => ({
+  button: {
+    '&:hover': {
+      borderColor: 'grey',
+    },
+  },
+}))
 
 export default function Buttons({ state, setState }) {
   const {
@@ -21,8 +31,7 @@ export default function Buttons({ state, setState }) {
     isButtonValue,
   } = state
   const { setButtons } = setState
-  const { buttonFocusBackground, buttonBlurBackground } =
-    buttonColors['buttonBackground']
+  const { buttonFocusBackground } = buttonColors['buttonBackground']
 
   const showButtons1 =
     !isSmallScreen || (isSmallScreen && buttons.length === 0) ? true : false
@@ -69,6 +78,8 @@ export default function Buttons({ state, setState }) {
       character: characterDropdownValue,
     })
 
+  const classes = buttonStyles()
+
   return (
     <Grid container direction="column" alignItems="center" spacing={cpSpacing}>
       {showButtons1 && (
@@ -80,12 +91,12 @@ export default function Buttons({ state, setState }) {
             {Object.keys(cpButtons).map((item) => {
               return (
                 <Button
+                  className={classes.button}
+                  color="info"
+                  severity="info"
                   key={item}
                   style={{
-                    background:
-                      buttons[0] === item
-                        ? buttonFocusBackground
-                        : buttonBlurBackground,
+                    background: buttons[0] === item && buttonFocusBackground,
                   }}
                   onClick={() => handleClick(item, 0)}>
                   {item}
@@ -110,12 +121,13 @@ export default function Buttons({ state, setState }) {
                 {cpButtons[buttons[0]].map((item) => {
                   return (
                     <Button
+                      className={classes.button}
+                      color="info"
+                      severity="info"
                       key={`${buttons[0]}/${item}`}
                       style={{
                         background:
-                          buttons[1] === item
-                            ? buttonFocusBackground
-                            : buttonBlurBackground,
+                          buttons[1] === item && buttonFocusBackground,
                       }}
                       onClick={() => handleClick(item, 1)}>
                       {item}

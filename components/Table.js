@@ -103,7 +103,6 @@ export function MovesTable({ state, setState }) {
       container
       style={{ background: 'yellow', height: '100%', overflowY: 'auto' }}>
       {filteredMoveList.length > 0 && (
-        // <Grid item style={{ background: 'blue', height: '100%' }}>
         <Paper className={classes.root}>
           <TableContainer className={classes.container}>
             <Table stickyHeader aria-label="sticky table">
@@ -155,7 +154,6 @@ export function MovesTable({ state, setState }) {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
-        // </Grid>
       )}
     </Grid>
   )

@@ -4,6 +4,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { cpInputs, buttonColors } from '../utils/vars'
+import { buttonStyles } from '../components/Buttons'
 
 export default function HeightStartNFinishInput({ state, setState }) {
   const { buttons, isSmallScreen } = state
@@ -26,6 +27,8 @@ export default function HeightStartNFinishInput({ state, setState }) {
     setButtons(newButtons)
   }
 
+  const classes = buttonStyles()
+
   return (
     <Grid container direction="column" alignItems="center">
       <Grid item>
@@ -45,12 +48,13 @@ export default function HeightStartNFinishInput({ state, setState }) {
                   {cpInputs.height.map((item) => {
                     return (
                       <Button
+                        color="info"
+                        severity="info"
+                        className={classes.button}
                         key={item}
                         style={{
                           background:
-                            buttons[2]?.[0] === item
-                              ? buttonFocusBackground
-                              : buttonBlurBackground,
+                            buttons[2]?.[0] === item && buttonFocusBackground,
                         }}
                         value={item}
                         onClick={() => handleClick(item, 0)}>
@@ -77,12 +81,13 @@ export default function HeightStartNFinishInput({ state, setState }) {
                   {cpInputs.height.map((item) => {
                     return (
                       <Button
+                        className={classes.button}
+                        color="info"
+                        severity="info"
                         key={item}
                         style={{
                           background:
-                            buttons[2]?.[1] === item
-                              ? buttonFocusBackground
-                              : buttonBlurBackground,
+                            buttons[2]?.[1] === item && buttonFocusBackground,
                         }}
                         value={item}
                         onClick={() => handleClick(item, 1)}>

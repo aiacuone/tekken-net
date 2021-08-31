@@ -45,8 +45,9 @@ export const cpInputs = {
 }
 export const buttonColors = {
   buttonBackground: {
-    buttonFocusBackground: 'orange',
-    buttonBlurBackground: 'white',
+    // buttonFocusBackground: '#C0C0C0',
+    buttonFocusBackground: '#74ff65',
+    buttonBlurBackground: 'black',
   },
 }
 export const charactersArr = [
@@ -107,3 +108,11 @@ export const inputValues = [
   'HEIGHT',
   'FRAMES',
 ]
+
+// export const useStyles = makeStyles((theme) => ({
+//   button: {
+//     '&:hover': {
+//       borderColor: 'grey',
+//     },
+//   },
+// }))
