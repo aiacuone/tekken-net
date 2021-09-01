@@ -36,7 +36,6 @@ export default function main({ state, setState }) {
       </Head>
       <Grid item className={homeStyles.background}>
         <Image
-          // alt="Mountains"
           src="/images/backgroundSVG.svg"
           layout="fill"
           objectFit="cover"

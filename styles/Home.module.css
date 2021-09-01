@@ -12,3 +12,30 @@
   height: 100%;
   white-space: nowrap;
 }
+
+/* .intro_main_content {
+  background: green;
+  height: 100%;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.intro_stepper_container {
+  grid-area: 10/1/10/10;
+} */
+
+.intro_main_content {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.intro_stepper_container {
+  grid-area: 10/1/10/11;
+}
+
+.intro_content {
+  grid-area: 1/1/10/11;
+  white-space: pre-wrap;
+}

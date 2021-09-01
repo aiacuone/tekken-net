@@ -6,7 +6,6 @@ import cpStyles from '../styles/ControlPanel.module.css'
 import homeStyles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
-
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
@@ -14,23 +13,12 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import tekkennetLogo from '../public/images/tekkennetLogo.svg'
+import screenshot from '../public/images/screenshot.png'
 
-// function getStepContent(stepIndex) {
-//   switch (stepIndex) {
-//     case 0:
-//       return 'Welcome'
-//     case 1:
-//       return 'Instructions'
-//     case 2:
-//       return 'This is the bit I really care about!'
-//     default:
-//       return 'Unknown stepIndex'
-//   }
-// }
-
-export default function Home({ state }) {
+export default function Home({ state, setState }) {
   const [activeStep, setActiveStep] = useState(0)
   const { isSmallScreen } = state
+
   const steps = getSteps()
 
   const handleNext = () => {
@@ -39,10 +27,6 @@ export default function Home({ state }) {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
-  }
-
-  const handleReset = () => {
-    setActiveStep(0)
   }
 
   function getSteps() {
@@ -65,15 +49,77 @@ export default function Home({ state }) {
   const classes = useStyles()
 
   const TekkenetLogo = () => {
-    return (
-      <Image
-        width="400"
-        height="50"
-        // className={styles.tekkennet_logo}
-        src={tekkennetLogo}></Image>
-    )
+    return <Image width="400" height="50" src={tekkennetLogo}></Image>
   }
-  console.log(activeStep)
+
+  const MainContent = () => {
+    const content =
+      activeStep === 0 ? (
+        <>
+          <Grid item>
+            <Typography variant={'h4'} align="center">
+              Welcome
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography align="center">
+              Thank you for taking the time to visit my personal Tekken-Net
+              project.
+            </Typography>
+          </Grid>
+        </>
+      ) : activeStep === 1 ? (
+        <>
+          <Grid item>
+            <Typography variant={'h4'} align="center">
+              Purpose
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography align="center">
+              Tekken-Net combines two passions, Tekken and Web Development, then
+              looks to improve both areas, firstly by getting more experience
+              and improving my skills with Web Development, but also better
+              simplifies the game Tekken which is already a very difficult game.
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography align="center">
+              Tekken-Net gathers the information that can be found on
+              <a href="https://rbnorway.org/t7-frame-data/">rbnorway</a>, and
+              gives the user the opportunity to filter moves within seconds,
+              rather than manually searching through excel tables
+            </Typography>
+          </Grid>
+        </>
+      ) : (
+        <>
+          <Grid item>
+            <Typography variant={'h4'} align="center">
+              Instructions
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography align="center">
+              Using the control panel located at the top of the screen, use the
+              select dropdown menu to select a character, then use the
+              categorised buttons to filter the moves you wish.
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Image src={screenshot} />
+          </Grid>
+          <Grid item>
+            <Typography align="center">
+              Thank you for your time, please select the 'Go to App button below
+              to continue.'
+            </Typography>
+          </Grid>
+        </>
+      )
+    return content
+  }
+
   return (
     <Grid
       container
@@ -93,9 +139,7 @@ export default function Home({ state }) {
         objectFit="cover"
         quality={100}
       />
-      {/* <Link href="/main">
-        <button>Control Panel 1</button>
-      </Link> */}
+
       <Grid
         container
         direction="column"
@@ -118,8 +162,19 @@ export default function Home({ state }) {
                   height: isSmallScreen ? '550px' : '80vh',
                   minHeight: '700px',
                 }}>
-                <Grid container direction="column" alignItems="center">
-                  <Grid item xs={12} style={{ width: '100%' }}>
+                <div className={homeStyles.intro_main_content}>
+                  <Grid
+                    style={{ padding: isSmallScreen ? '20px' : '70px' }}
+                    direction="column"
+                    className={homeStyles.intro_content}
+                    container
+                    justifyContent="center"
+                    spacing={3}
+                    // alignItems="center"
+                  >
+                    <MainContent />
+                  </Grid>
+                  <div className={homeStyles.intro_stepper_container}>
                     <Stepper activeStep={activeStep} alternativeLabel>
                       {steps.map((label) => (
                         <Step key={label}>
@@ -127,8 +182,8 @@ export default function Home({ state }) {
                         </Step>
                       ))}
                     </Stepper>
-                  </Grid>
-                </Grid>
+                  </div>
+                </div>
               </Paper>
             </Grid>
             <Grid item>
