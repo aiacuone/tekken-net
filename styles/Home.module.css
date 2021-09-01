@@ -7,3 +7,8 @@
   top: 100;
   background: green;
 }
+
+.intro_container {
+  height: 100%;
+  white-space: nowrap;
+}

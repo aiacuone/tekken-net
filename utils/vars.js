@@ -45,8 +45,8 @@ export const cpInputs = {
 }
 export const buttonColors = {
   buttonBackground: {
-    // buttonFocusBackground: '#C0C0C0',
-    buttonFocusBackground: '#74ff65',
+    buttonFocusBackground: '#90EE90',
+    // buttonFocusBackground: '#74ff65',
     buttonBlurBackground: 'black',
   },
 }

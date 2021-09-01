@@ -1,5 +1,6 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
+
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import {
@@ -8,18 +9,9 @@ import {
   cpSpacing,
   buttonColors,
   cpButtons,
-  // useStyles,
 } from '../utils/vars'
 import { getFilteredMoveList } from '../components/Table'
 import { makeStyles } from '@material-ui/core/styles'
-
-export const buttonStyles = makeStyles((theme) => ({
-  button: {
-    '&:hover': {
-      borderColor: 'grey',
-    },
-  },
-}))
 
 export default function Buttons({ state, setState }) {
   const {
@@ -143,3 +135,11 @@ export default function Buttons({ state, setState }) {
     </Grid>
   )
 }
+
+export const buttonStyles = makeStyles((theme) => ({
+  button: {
+    '&:hover': {
+      borderColor: 'grey',
+    },
+  },
+}))
