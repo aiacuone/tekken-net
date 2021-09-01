@@ -87,6 +87,7 @@ export default function ControlPanel({ state, setState }) {
                 justifyContent: 'center',
                 flexDirection: 'column',
                 alignItems: 'center',
+                zIndex: 100,
               }}>
               <AccordionSummary
                 expandIcon={<MenuIcon fontSize="medium" />}

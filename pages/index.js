@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import React, { useState } from 'react'
 import Head from 'next/head'
 import Grid from '@material-ui/core/Grid'
-import cpStyles from '../styles/ControlPanel.module.css'
 import homeStyles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -69,7 +68,11 @@ export default function Home({ state, setState }) {
           </Grid>
         </>
       ) : activeStep === 1 ? (
-        <>
+        <Grid
+          container
+          direction="column"
+          spacing={3}
+          style={{ padding: isSmallScreen ? '20px' : '70px' }}>
           <Grid item>
             <Typography variant={'h4'} align="center">
               Purpose
@@ -91,7 +94,7 @@ export default function Home({ state, setState }) {
               rather than manually searching through excel tables
             </Typography>
           </Grid>
-        </>
+        </Grid>
       ) : (
         <>
           <Grid item>
@@ -146,9 +149,6 @@ export default function Home({ state, setState }) {
         justifyContent="center"
         alignItems="center">
         <Grid item>
-          <TekkenetLogo />
-        </Grid>
-        <Grid item>
           <Grid
             container
             direction="column"
@@ -159,19 +159,23 @@ export default function Home({ state, setState }) {
               <Paper
                 style={{
                   width: isSmallScreen ? '300px' : '800px',
-                  height: isSmallScreen ? '550px' : '80vh',
-                  minHeight: '700px',
+                  height: isSmallScreen ? '540px' : '80vh',
+                  minHeight: isSmallScreen ? '300px' : '700px',
                 }}>
                 <div className={homeStyles.intro_main_content}>
                   <Grid
-                    style={{ padding: isSmallScreen ? '20px' : '70px' }}
+                    style={{
+                      padding: isSmallScreen ? '10px' : '70px',
+                    }}
                     direction="column"
                     className={homeStyles.intro_content}
                     container
                     justifyContent="center"
-                    spacing={3}
-                    // alignItems="center"
-                  >
+                    alignItems="center"
+                    spacing={3}>
+                    <Grid item style={{ position: 'absolute', top: -15 }}>
+                      <TekkenetLogo />
+                    </Grid>
                     <MainContent />
                   </Grid>
                   <div className={homeStyles.intro_stepper_container}>

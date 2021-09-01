@@ -30,8 +30,8 @@ export function getFilteredMoveList({
   filteredMoveList = moveList
 }
 
-export function MovesTable({ state, setState }) {
-  const { isMediumScreen, isSmallScreen, notify } = state
+export function MovesTable({ state }) {
+  const { isSmallScreen, notify, isPhone } = state
 
   const columns = [
     { id: 'Command', label: 'Command', minWidth: 170, align: 'center' },
@@ -79,10 +79,7 @@ export function MovesTable({ state, setState }) {
       width: isSmallScreen ? '300px' : '100%',
     },
     container: {
-      maxHeight: isMediumScreen ? 700 : 1000,
-    },
-    pagination: {
-      maxHeight: '100px',
+      maxHeight: isPhone ? 450 : 800, // HEIGHT OF THE TABLE
     },
   })
 
@@ -100,7 +97,7 @@ export function MovesTable({ state, setState }) {
   }
 
   return (
-    <Grid container style={{ height: '100%', overflowY: 'auto' }}>
+    <Grid container>
       {filteredMoveList.length > 0 && (
         <Paper className={classes.root}>
           <TableContainer className={classes.container}>

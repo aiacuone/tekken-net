@@ -10,7 +10,8 @@ function MyApp({ Component, pageProps }) {
   const [characterDropdownValue, setCharacterDropdownValue] = useState('akuma')
   const [smallCPshowTable, setSmallCPshowTable] = useState(false)
   const isSmallScreen = useMediaQuery('(max-width:600px')
-  const isMediumScreen = useMediaQuery('(max-width:1920')
+  const isMediumScreen = useMediaQuery('(max-width:1920px')
+  const isPhone = useMediaQuery('(max-height:850px')
   const isInputValue = inputValues.indexOf(buttons[1]) > -1 ? true : false
   const isButtonValue = inputValues.indexOf(buttons[1]) === -1 ? true : false
   const [notify, setNotify] = useState(false)
@@ -68,6 +69,7 @@ function MyApp({ Component, pageProps }) {
     attr2,
     isMediumScreen,
     notify,
+    isPhone,
   }
   const setState = {
     setButtons,
