@@ -15,6 +15,7 @@ export default function main({ state, setState }) {
   const TekkenetLogo = () => {
     return (
       <Image
+        alt=""
         width="400"
         height="50"
         className={cpStyles.tekkennet_logo}
@@ -36,6 +37,7 @@ export default function main({ state, setState }) {
       </Head>
       <Grid item className={homeStyles.background}>
         <Image
+          alt=""
           src="/images/backgroundSVG.svg"
           layout="fill"
           objectFit="cover"

@@ -61,7 +61,15 @@ export default function ControlPanel({ state, setState }) {
   }
 
   const TekkennetLogo = () => {
-    return <Image layout="fixed" height="50" width="350" src={tekkennetLogo} />
+    return (
+      <Image
+        alt=""
+        layout="fixed"
+        height="50"
+        width="350"
+        src={tekkennetLogo}
+      />
+    )
   }
 
   return (

@@ -48,7 +48,7 @@ export default function Home({ state, setState }) {
   const classes = useStyles()
 
   const TekkenetLogo = () => {
-    return <Image width="400" height="50" src={tekkennetLogo}></Image>
+    return <Image alt="" width="400" height="50" src={tekkennetLogo}></Image>
   }
 
   const MainContent = () => {
@@ -110,12 +110,12 @@ export default function Home({ state, setState }) {
             </Typography>
           </Grid>
           <Grid item>
-            <Image src={screenshot} />
+            <Image alt="" src={screenshot} />
           </Grid>
           <Grid item>
             <Typography align="center">
-              Thank you for your time, please select the 'GO TO APP' button
-              below to continue.
+              Thank you for your time, please select the &#39;GO TO APP&#39;
+              button below to continue.
             </Typography>
           </Grid>
         </>
@@ -136,6 +136,7 @@ export default function Home({ state, setState }) {
         <link rel="icon" href="/tekkenIcon.ico" />
       </Head>
       <Image
+        alt=""
         className={homeStyles.background}
         src="/images/backgroundSVG.svg"
         layout="fill"
