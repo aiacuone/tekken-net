@@ -107,4 +107,5 @@ export const inputValues = [
   'START & FINISH',
   'HEIGHT',
   'FRAMES',
+  'GROUP',
 ]

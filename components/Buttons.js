@@ -38,7 +38,7 @@ export default function Buttons({ state, setState }) {
     : lgCPButtHeadSpacing
 
   function handleClick(value, index) {
-    setFramesRange([10, 25])
+    // setFramesRange([10, 25]) // 50/50 about this
     index === 1 && setNotify(true)
     const newButtons = [...buttons]
     newButtons.length === 3 && newButtons.pop()
