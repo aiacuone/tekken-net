@@ -56,7 +56,7 @@ export default function Home({ state, setState }) {
       activeStep === 0 ? (
         <>
           <Grid item>
-            <Typography variant={'h4'} align="center">
+            <Typography variant={isSmallScreen ? 'h5' : 'h4'} align="center">
               Welcome
             </Typography>
           </Grid>
@@ -74,7 +74,7 @@ export default function Home({ state, setState }) {
           spacing={3}
           style={{ padding: isSmallScreen ? '20px' : '70px' }}>
           <Grid item>
-            <Typography variant={'h4'} align="center">
+            <Typography variant={isSmallScreen ? 'h5' : 'h4'} align="center">
               Purpose
             </Typography>
           </Grid>
@@ -88,17 +88,17 @@ export default function Home({ state, setState }) {
           </Grid>
           <Grid item>
             <Typography align="center">
-              Tekken-Net gathers the information that can be found on
+              Tekken-Net gathers the information that can be found on&nbsp;
               <a href="https://rbnorway.org/t7-frame-data/">rbnorway</a>, and
               gives the user the opportunity to filter moves within seconds,
-              rather than manually searching through excel tables
+              rather than manually searching through excel spreadsheet.
             </Typography>
           </Grid>
         </Grid>
       ) : (
         <>
           <Grid item>
-            <Typography variant={'h4'} align="center">
+            <Typography variant={isSmallScreen ? 'h5' : 'h4'} align="center">
               Instructions
             </Typography>
           </Grid>
@@ -114,8 +114,8 @@ export default function Home({ state, setState }) {
           </Grid>
           <Grid item>
             <Typography align="center">
-              Thank you for your time, please select the 'Go to App button below
-              to continue.'
+              Thank you for your time, please select the 'GO TO APP' button
+              below to continue.
             </Typography>
           </Grid>
         </>
@@ -158,9 +158,11 @@ export default function Home({ state, setState }) {
             <Grid item>
               <Paper
                 style={{
-                  width: isSmallScreen ? '300px' : '800px',
-                  height: isSmallScreen ? '540px' : '80vh',
-                  minHeight: isSmallScreen ? '300px' : '700px',
+                  // width: isSmallScreen ? '300px' : '800px',
+                  width: isSmallScreen ? '300px' : '80vw',
+                  maxWidth: '800px',
+                  height: '70vh',
+                  minHeight: isSmallScreen ? '580px' : '700px',
                 }}>
                 <div className={homeStyles.intro_main_content}>
                   <Grid

@@ -6,7 +6,7 @@ import { inputValues } from '../utils/vars'
 function MyApp({ Component, pageProps }) {
   const [buttons, setButtons] = useState([])
   const [expanded, setExpanded] = useState(false)
-  const [framesRange, setFramesRange] = useState({ min: 10, max: 25 })
+  const [framesRange, setFramesRange] = useState([10, 25])
   const [characterDropdownValue, setCharacterDropdownValue] = useState('akuma')
   const [smallCPshowTable, setSmallCPshowTable] = useState(false)
   const isSmallScreen = useMediaQuery('(max-width:600px')
@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
 
   const attr1 =
     buttons[1] === 'RANGE'
-      ? framesRange['min']
+      ? framesRange[0]
       : buttons[0] === 'HEIGHT' && buttons[1] === 'SPECIFIC'
       ? buttons[2]
       : buttons[1] === 'START & FINISH'
@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }) {
 
   const attr2 =
     buttons[1] === 'RANGE'
-      ? framesRange['max']
+      ? framesRange[1]
       : buttons[1] === 'START & FINISH'
       ? buttons[2]?.[1]
       : buttons[0] === 'FRAMES' && buttons[1] === 'GROUP'

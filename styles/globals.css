@@ -24,3 +24,8 @@ a {
 ::-webkit-scrollbar {
   z-index: -110;
 }
+
+a {
+  color: blue;
+  text-decoration: underline;
+}

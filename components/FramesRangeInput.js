@@ -18,7 +18,7 @@ export default function FramesRangeInput({ state, setState }) {
   const { setFramesRange } = setState
 
   function handleChange(e, arr) {
-    setFramesRange({ min: arr[0], max: arr[1] })
+    setFramesRange([arr[0], arr[1]])
   }
 
   function valuetext(value, index) {
@@ -29,12 +29,12 @@ export default function FramesRangeInput({ state, setState }) {
 
   const marks = [
     {
-      value: framesRange['min'],
-      label: framesRange['min'],
+      value: framesRange[0],
+      label: framesRange[0],
     },
     {
-      value: framesRange['max'],
-      label: framesRange['max'],
+      value: framesRange[1],
+      label: framesRange[1],
     },
   ]
   return (
@@ -47,6 +47,7 @@ export default function FramesRangeInput({ state, setState }) {
         <div
           className={isSmallScreen ? classes.sliderSmall : classes.sliderLarge}>
           <Slider
+            value={framesRange}
             max={30}
             orientation={isSmallScreen ? 'vertical' : 'horizontal'}
             defaultValue={[10, 25]}
